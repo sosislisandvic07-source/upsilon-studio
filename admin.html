@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Paneli - Upsilon</title>
+    
+    <link rel="icon" href="logo.png" type="image/png">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* BU KOD FAREYİ ADMIN PANELİNDE GÖRÜNÜR YAPAR */
         body, html, * { cursor: auto !important; }
-
         .login-screen { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .dashboard { display: none; padding: 50px; }
         .order-card { position: relative; display: flex; flex-direction: column; gap: 10px; }
         .status-badge { padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
         .st-beklemede { background: #ffcc00; color: black; }
-        .st-hazirlaniyor { background: #0070f3; color: white; }
+        .st-hazirlaniyor { background: #00e5ff; color: black; }
         .st-tamamlandi { background: #00cc66; color: black; }
         .st-iptal { background: #ff3333; color: white; }
     </style>
@@ -29,7 +30,6 @@
         </div>
         <p id="login-msg" style="color:red; margin-top:10px;"></p>
     </div>
-
     <div id="dashboard-section" class="dashboard">
         <div style="display:flex; justify-content:space-between; margin-bottom:30px;">
             <h2>Gelen Siparişler</h2>
