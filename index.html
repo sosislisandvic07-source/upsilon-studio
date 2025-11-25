@@ -12,161 +12,230 @@
 <body>
 
     <div id="preloader"><div class="loader-content"><div class="loader-logo">UPSILON</div><div class="loader-bar"></div></div></div>
-
-    <div id="cookieBanner"><p>🍪 Deneyiminizi iyileştirmek için çerez kullanıyoruz.</p><button onclick="acceptCookies()">Tamam</button></div>
-    <a href="https://discord.gg/SFDJY9YGvS" target="_blank" class="floating-discord"><i class="fa-brands fa-discord"></i></a>
+    <div id="cookieBanner"><p data-lang="cookie_text">🍪 Deneyiminizi iyileştirmek için çerez kullanıyoruz.</p><button onclick="acceptCookies()" data-lang="cookie_btn">Tamam</button></div>
+    <a href="https://discord.gg/S4y9zX" target="_blank" class="floating-discord"><i class="fa-brands fa-discord"></i></a>
     <div class="cursor"></div><div class="cursor2"></div>
     <button id="scrollTopBtn"><i class="fa-solid fa-arrow-up"></i></button>
 
-    <div class="background-container"><div class="stars"></div><div class="stars2"></div><img src="logo.png" class="bg-logo" onerror="this.style.display='none'"></div>
+    <div class="background-container">
+        <div class="stars"></div><div class="stars2"></div>
+        <img src="logo.png" class="bg-logo" onerror="this.style.display='none'">
+    </div>
 
     <header>
         <div style="display:flex; align-items:center; gap:20px;">
             <div class="logo">UPSILON <span style="color:var(--primary)">DEV</span></div>
-            <div class="status-badge-nav"><span class="status-dot"></span> <span class="status-text">SİPARİŞ: <b>AÇIK</b></span></div>
+            <div class="status-badge-nav"><span class="status-dot"></span> <span class="status-text" data-lang="status_open">SİPARİŞ: <b>AÇIK</b></span></div>
         </div>
         <nav>
             <ul>
-                <li><a href="#services">Hizmetler</a></li>
-                <li><a href="#pricing">Fiyatlar</a></li>
-                <li><a href="#calculator">Hesapla</a></li>
-                <li><a href="#portfolio">Galeri</a></li>
-                <li><a href="#contact">Sipariş</a></li>
-                <li><a href="#tracking">Takip</a></li> </ul>
+                <li><a href="#about" data-lang="nav_about">Hakkımızda</a></li>
+                <li><a href="#services" data-lang="nav_services">Hizmetler</a></li>
+                <li><a href="#pricing" data-lang="nav_pricing">Fiyatlar</a></li>
+                <li><a href="#calculator" data-lang="nav_calc">Hesapla</a></li>
+                <li><a href="#portfolio" data-lang="nav_portfolio">Galeri</a></li>
+                <li><a href="#contact" data-lang="nav_contact">Sipariş</a></li>
+            </ul>
             <button id="lang-btn" class="lang-switch">EN</button>
         </nav>
     </header>
 
     <section class="hero">
-        <h1 class="glitch" data-text="Hayallerinizi Roblox'a Taşıyoruz" data-aos="fade-down">Hayallerinizi Roblox'a Taşıyoruz</h1>
-        <p data-aos="fade-up" data-aos-delay="200">Profesyonel Scripting, Building ve Tasarım Çözümleri.</p>
+        <h1 class="glitch" data-text="Hayallerinizi Roblox'a Taşıyoruz" data-aos="fade-down" data-lang="hero_title">Hayallerinizi Roblox'a Taşıyoruz</h1>
+        <p data-aos="fade-up" data-aos-delay="200" data-lang="hero_desc">Profesyonel Scripting, Building ve Tasarım Çözümleri.</p>
         <div style="display:flex; gap:15px; justify-content:center; margin-top:20px;">
-            <a href="#pricing" class="btn" data-aos="zoom-in">Fiyatları Gör</a>
-            <a href="#contact" class="btn btn-outline" data-aos="zoom-in">Bize Ulaşın</a>
+            <a href="#pricing" class="btn" data-aos="zoom-in" data-lang="hero_btn1">Fiyatları Gör</a>
+            <a href="#contact" class="btn btn-outline" data-aos="zoom-in" data-lang="hero_btn2">Bize Ulaşın</a>
         </div>
     </section>
 
-    <div class="announcement-bar"><p>🎉 <b>YENİ BAŞLAYANLARA ÖZEL KAMPANYA!</b> <a href="#pricing" onclick="showPricing('campaign')">Detaylar için tıkla.</a></p></div>
+    <div class="announcement-bar">
+        <p><span data-lang="announce_text">🎉 YENİ BAŞLAYANLARA ÖZEL KAMPANYA!</span> <a href="#pricing" onclick="showPricing('campaign')" data-lang="announce_link">Detaylar için tıkla.</a></p>
+    </div>
 
     <section class="stats-section">
         <div class="container grid" style="text-align: center;">
-            <div class="stat-item" data-aos="zoom-in"><h2 class="counter" data-target="5">0</h2><p>Tamamlanan Proje (+)</p></div>
-            <div class="stat-item" data-aos="zoom-in" data-aos-delay="100"><h2 class="counter" data-target="3">0</h2><p>Uzman Personel</p></div>
-            <div class="stat-item" data-aos="zoom-in" data-aos-delay="200"><h2 class="counter" data-target="100">0</h2><p>% Müşteri Memnuniyeti</p></div>
+            <div class="stat-item" data-aos="zoom-in"><h2 class="counter" data-target="5">0</h2><p data-lang="stat_1">Tamamlanan Proje (+)</p></div>
+            <div class="stat-item" data-aos="zoom-in" data-aos-delay="100"><h2 class="counter" data-target="3">0</h2><p data-lang="stat_2">Uzman Personel</p></div>
+            <div class="stat-item" data-aos="zoom-in" data-aos-delay="200"><h2 class="counter" data-target="100">0</h2><p data-lang="stat_3">% Müşteri Memnuniyeti</p></div>
         </div>
     </section>
 
     <section id="about" class="container">
-        <h2 class="section-title" data-aos="fade-right">Vizyon & Misyon</h2>
+        <h2 class="section-title" data-aos="fade-right" data-lang="about_title">Vizyon & Misyon</h2>
         <div class="grid">
-            <div class="card" data-aos="fade-up" style="border-left: 3px solid var(--primary);"><i class="fa-solid fa-eye card-icon"></i><h3>Vizyonumuz</h3><p>Global çapta tanınan lider bir oyun stüdyosu olmak.</p></div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200" style="border-left: 3px solid #ffcc00;"><i class="fa-solid fa-rocket card-icon" style="color:#ffcc00"></i><h3>Misyonumuz</h3><p>Her seviyeden geliştiriciye profesyonel çözüm sunmak.</p></div>
+            <div class="card" data-aos="fade-up" style="border-left: 3px solid var(--primary);">
+                <i class="fa-solid fa-eye card-icon"></i>
+                <h3 data-lang="vision_title">Vizyonumuz</h3>
+                <p data-lang="vision_desc">Roblox evreninde sınırları zorlayan, yenilikçi ve global çapta tanınan lider bir oyun stüdyosu olmak.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200" style="border-left: 3px solid #ffcc00;">
+                <i class="fa-solid fa-rocket card-icon" style="color:#ffcc00"></i>
+                <h3 data-lang="mission_title">Misyonumuz</h3>
+                <p data-lang="mission_desc">Her seviyeden geliştiriciye profesyonel, erişilebilir ve yaratıcı çözümler sunarak hayalleri gerçeğe dönüştürmek.</p>
+            </div>
         </div>
     </section>
 
     <section class="process-section container">
-        <h2 class="section-title" data-aos="fade-right">Nasıl Çalışıyoruz?</h2>
+        <h2 class="section-title" data-aos="fade-right" data-lang="process_title">Nasıl Çalışıyoruz?</h2>
         <div class="process-grid">
-            <div class="process-step" data-aos="fade-up"><div class="step-number">01</div><i class="fa-solid fa-paper-plane step-icon"></i><h3>Talep</h3><p>Formu doldur.</p></div>
-            <div class="process-step" data-aos="fade-up" data-aos-delay="100"><div class="step-number">02</div><i class="fa-solid fa-handshake step-icon"></i><h3>Anlaşma</h3><p>Fiyat ve kapora.</p></div>
-            <div class="process-step" data-aos="fade-up" data-aos-delay="200"><div class="step-number">03</div><i class="fa-solid fa-code step-icon"></i><h3>Geliştirme</h3><p>Yapım aşaması.</p></div>
-            <div class="process-step" data-aos="fade-up" data-aos-delay="300"><div class="step-number">04</div><i class="fa-solid fa-check-circle step-icon"></i><h3>Teslimat</h3><p>Dosya teslimi.</p></div>
+            <div class="process-step" data-aos="fade-up"><div class="step-number">01</div><i class="fa-solid fa-paper-plane step-icon"></i><h3 data-lang="proc_1_t">Talep</h3><p data-lang="proc_1_d">Formu doldur.</p></div>
+            <div class="process-step" data-aos="fade-up" data-aos-delay="100"><div class="step-number">02</div><i class="fa-solid fa-handshake step-icon"></i><h3 data-lang="proc_2_t">Anlaşma</h3><p data-lang="proc_2_d">Fiyat ve kapora.</p></div>
+            <div class="process-step" data-aos="fade-up" data-aos-delay="200"><div class="step-number">03</div><i class="fa-solid fa-code step-icon"></i><h3 data-lang="proc_3_t">Geliştirme</h3><p data-lang="proc_3_d">Yapım aşaması.</p></div>
+            <div class="process-step" data-aos="fade-up" data-aos-delay="300"><div class="step-number">04</div><i class="fa-solid fa-check-circle step-icon"></i><h3 data-lang="proc_4_t">Teslimat</h3><p data-lang="proc_4_d">Dosya teslimi.</p></div>
         </div>
     </section>
 
     <section id="services" class="container">
-        <h2 class="section-title" data-aos="fade-right">Hizmetler</h2>
+        <h2 class="section-title" data-aos="fade-right" data-lang="nav_services">Hizmetler</h2>
         <div class="grid">
-            <div class="card" data-aos="fade-up"><i class="fa-solid fa-code card-icon"></i><h3>Scripting</h3><p>Ananas liderliğinde sistemler.</p></div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200"><i class="fa-solid fa-cube card-icon"></i><h3>Building</h3><p>YsB imzalı haritalar.</p></div>
-            <div class="card" data-aos="fade-up" data-aos-delay="400"><i class="fa-solid fa-layer-group card-icon"></i><h3>GFX</h3><p>Nakarat imzalı tasarımlar.</p></div>
+            <div class="card" data-aos="fade-up"><i class="fa-solid fa-code card-icon"></i><h3>Scripting</h3><p data-lang="serv_1_desc">Ananas liderliğinde, hatasız sistemler, GUI ve AI kodlama.</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200"><i class="fa-solid fa-cube card-icon"></i><h3>Building</h3><p data-lang="serv_2_desc">YsB imzalı haritalar ve Nakarat imzalı detaylı 3D modeller.</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400"><i class="fa-solid fa-layer-group card-icon"></i><h3>GFX</h3><p data-lang="serv_3_desc">Oyun kapakları, logolar ve kullanıcı arayüzü tasarımları.</p></div>
         </div>
     </section>
 
     <section id="pricing" class="container">
-        <h2 class="section-title" data-aos="fade-right">Fiyatlandırma</h2>
+        <h2 class="section-title" data-aos="fade-right" data-lang="nav_pricing">Fiyatlandırma</h2>
         <div class="pricing-toggle" data-aos="zoom-in">
-            <button class="toggle-btn active" onclick="showPricing('standard')">Standart Fiyatlar</button>
-            <button class="toggle-btn campaign-btn" onclick="showPricing('campaign')">🚀 Yeni Başlayan Kampanyası</button>
+            <button class="toggle-btn active" onclick="showPricing('standard')" data-lang="price_std">Standart Fiyatlar</button>
+            <button class="toggle-btn campaign-btn" onclick="showPricing('campaign')" data-lang="price_camp">🚀 Yeni Başlayan Kampanyası</button>
         </div>
+
         <div id="standard-pricing" class="pricing-grid">
-            <div class="card price-card"><h3>🛠️ Builder</h3><ul><li>Standart: <b>80₺/s</b></li><li>Orta: <b>100₺/s</b></li><li>Yüksek: <b>120–150₺/s</b></li></ul></div>
-            <div class="card price-card discount-card"><div class="badge">İNDİRİM</div><h3>🧩 Scripter</h3><ul><li>Basit: <b class="glow-green">20₺</b></li><li>Orta: <b class="glow-green">80-150₺</b></li><li>Kompleks: <b class="glow-green">300-600₺</b></li></ul></div>
-            <div class="card price-card discount-card"><div class="badge">İNDİRİM</div><h3>🎨 Mesh</h3><ul><li>Basit: <b>50–150₺</b></li><li>Orta: <b class="glow-green">200-250₺</b></li></ul></div>
-            <div class="card price-card"><h3>🖼️ GFX</h3><ul><li>PP: <b>50–100₺</b></li><li>Logo: <b>150–400₺</b></li></ul></div>
+            <div class="card price-card">
+                <h3 data-lang="p_build_t">🛠️ Builder</h3>
+                <p class="price-sub" data-lang="p_build_sub">Saatlik Ücret</p>
+                <ul data-lang="p_build_list">
+                    <li>Standart: <b>80₺/s</b></li>
+                    <li>Orta: <b>100₺/s</b></li>
+                    <li>Yüksek: <b>120–150₺/s</b></li>
+                </ul>
+            </div>
+            <div class="card price-card discount-card">
+                <div class="badge">İNDİRİM</div>
+                <h3 data-lang="p_script_t">🧩 Scripter</h3>
+                <p class="price-sub" data-lang="p_script_sub">Sistem Bazlı</p>
+                <ul data-lang="p_script_list">
+                    <li>Basit: <s style="color:#666">150₺</s> <b class="glow-green">20₺</b></li>
+                    <li>Orta: <s style="color:#666">300₺</s> <b class="glow-green">80-150₺</b></li>
+                    <li>Kompleks: <b class="glow-green">300-600₺</b></li>
+                </ul>
+            </div>
+            <div class="card price-card discount-card">
+                <div class="badge">İNDİRİM</div>
+                <h3 data-lang="p_mesh_t">🎨 Mesh Artist</h3>
+                <p class="price-sub" data-lang="p_mesh_sub">Model Bazlı</p>
+                <ul data-lang="p_mesh_list">
+                    <li>Basit: <b>50–150₺</b></li>
+                    <li>Orta: <s style="color:#666">400₺</s> <b class="glow-green">200-250₺</b></li>
+                    <li>Detaylı: <b class="glow-green">300-600₺</b></li>
+                </ul>
+            </div>
+            <div class="card price-card">
+                <h3 data-lang="p_gfx_t">🖼️ GFX</h3>
+                <p class="price-sub" data-lang="p_gfx_sub">Tasarım</p>
+                <ul data-lang="p_gfx_list">
+                    <li>PP: <b>50–100₺</b></li>
+                    <li>Logo: <b>150–400₺</b></li>
+                </ul>
+            </div>
+            <div class="card price-card full-span">
+                <h3 data-lang="p_pack_t">📦 Tam Paketler</h3>
+                <div style="display:flex; justify-content:space-around; flex-wrap:wrap;" data-lang="p_pack_list">
+                    <span>Mini: <b>300–600₺</b></span>
+                    <span>Orta: <b>800–2000₺</b></span>
+                    <span>Büyük: <b>2500–8000₺+</b></span>
+                </div>
+            </div>
         </div>
+
         <div id="campaign-pricing" class="pricing-grid" style="display:none;">
-            <div class="alert-box">⚠️ <b>DİKKAT:</b> Sadece ilk kez oyun yapacaklar içindir.<div class="countdown-box">Kalan Süre: <span id="countdown-timer">...</span></div></div>
-            <div class="card price-card campaign-mode"><h3>🛠️ Builder (Start)</h3><ul><li>Mini: <b>40₺/s</b></li></ul></div>
-            <div class="card price-card campaign-mode"><h3>🧩 Scripter (Start)</h3><ul><li>Basit: <b class="glow-gold">20₺</b></li></ul></div>
-            <div class="card price-card campaign-mode"><h3>🎨 Mesh (Start)</h3><ul><li>Basit: <b>30–90₺</b></li></ul></div>
-            <div class="card price-card campaign-mode"><h3>🖼️ GFX (Start)</h3><ul><li>PP: <b>30–60₺</b></li></ul></div>
+            <div class="alert-box">
+                <span data-lang="camp_alert">⚠️ DİKKAT: Bu fiyatlar sadece ilk kez oyun yapacaklar içindir.</span>
+                <div class="countdown-box"><span data-lang="time_left">Kalan Süre:</span> <div id="countdown-timer">...</div></div>
+            </div>
+            <div class="card price-card campaign-mode"><h3 data-lang="cp_build_t">🛠️ Builder (Start)</h3><ul data-lang="cp_build_list"><li>Mini: <b>40₺/s</b></li></ul></div>
+            <div class="card price-card campaign-mode"><h3 data-lang="cp_script_t">🧩 Scripter (Start)</h3><ul data-lang="cp_script_list"><li>Basit: <b class="glow-gold">20₺</b></li></ul></div>
+            <div class="card price-card campaign-mode"><h3 data-lang="cp_mesh_t">🎨 Mesh (Start)</h3><ul data-lang="cp_mesh_list"><li>Basit: <b>30–90₺</b></li></ul></div>
+            <div class="card price-card campaign-mode"><h3 data-lang="cp_gfx_t">🖼️ GFX (Start)</h3><ul data-lang="cp_gfx_list"><li>PP: <b>30–60₺</b></li></ul></div>
         </div>
     </section>
 
     <section id="calculator" class="container">
-        <h2 class="section-title" data-aos="fade-right">Bütçe Hesapla</h2>
+        <h2 class="section-title" data-aos="fade-right" data-lang="nav_calc">Bütçe Hesapla</h2>
         <div class="form-box" data-aos="zoom-in-up" style="border-color: var(--primary);">
+            <p style="text-align:center; color:#ccc; margin-bottom:20px;" data-lang="calc_desc">Tahmini fiyat aralığı.</p>
             <form id="calcForm" onchange="calculatePrice()">
-                <div class="input-group"><label>Hizmet</label><select id="calcService"><option value="0">Seçiniz...</option><option value="100">Builder</option><option value="150">Scripter</option><option value="80">Mesh</option><option value="50">GFX</option></select></div>
-                <div class="input-group"><label>Büyüklük</label><select id="calcSize"><option value="1">Küçük</option><option value="2">Orta</option><option value="4">Büyük</option></select></div>
-                <div class="input-group"><label>Ekstralar</label><div style="display:flex; gap:15px;"><label><input type="checkbox" value="50" class="calc-extra"> Hızlı</label><label><input type="checkbox" value="100" class="calc-extra"> Destek</label></div></div>
-                <div class="price-result" style="text-align:center; margin-top:30px; padding:20px; background:rgba(0,229,255,0.1); border-radius:10px;"><span style="color:#aaa;">Tahmini Tutar:</span><h2 id="totalPrice" style="color:var(--primary); font-size:2.5rem; margin:10px 0;">0 ₺</h2></div>
+                <div class="input-group"><label data-lang="form_service">Hizmet</label><select id="calcService"><option value="0">Seçiniz...</option><option value="100">Builder</option><option value="150">Scripter</option><option value="80">Mesh</option><option value="50">GFX</option></select></div>
+                <div class="input-group"><label data-lang="calc_size">Büyüklük</label><select id="calcSize"><option value="1">Küçük</option><option value="2">Orta</option><option value="4">Büyük</option></select></div>
+                <div class="input-group"><label data-lang="calc_extra">Ekstralar</label><div style="display:flex; gap:15px;"><label><input type="checkbox" value="50" class="calc-extra"> Hızlı</label><label><input type="checkbox" value="100" class="calc-extra"> Destek</label></div></div>
+                <div class="price-result" style="text-align:center; margin-top:30px; padding:20px; background:rgba(0,229,255,0.1); border-radius:10px;"><span style="color:#aaa;" data-lang="calc_total">Tahmini Tutar:</span><h2 id="totalPrice" style="color:var(--primary); font-size:2.5rem; margin:10px 0;">0 ₺</h2></div>
             </form>
         </div>
     </section>
 
     <section id="portfolio" class="container">
-        <h2 class="section-title" data-aos="fade-right">Galeri</h2>
+        <h2 class="section-title" data-aos="fade-right" data-lang="nav_portfolio">Galeri</h2>
         <div class="gallery-grid">
-            <div class="gallery-item" data-aos="zoom-in"><img src="https://cdn.discordapp.com/attachments/1329859496582971444/1396946603675357317/2431000312_6939657427_1752351135965.png?ex=692563a8&is=69241228&hm=fb8a54b64d480c641093b6c2f426caa209ee8a3b9347414a6a524bbf024287a4" alt="1"><div class="gallery-overlay"><h3>Yüksek kalite ve Yüksek kalite de Işıklandırma.</h3></div></div>
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100"><img src="https://cdn.discordapp.com/attachments/1357462046102523965/1441548380072312974/Nakarat_GFX3_arka_plan_yok.png?ex=69257dcc&is=69242c4c&hm=d31a964f8487ad4fcc2d0a435aa78873ee7f626b2d4375151c27d0d06fdb3cff" alt="2"><div class="gallery-overlay"><h3>3D GFX Tasarımı.</h3></div></div>
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200"><img src="https://cdn.discordapp.com/attachments/1329859496582971444/1425582412863246537/2431000312_6939657427_1759954530563.png?ex=69256a55&is=692418d5&hm=e9eca838d9a1d45d1fb887343f79033a345b2ca5428bca282cc9fa7edd9bc882" alt="3"><div class="gallery-overlay"><h3>Yüksek kalite ve Yüksek kalite de Işıklandırma</h3></div></div>
+            <div class="gallery-item" data-aos="zoom-in">
+                <img src="https://cdn.discordapp.com/attachments/1329859496582971444/1396946603675357317/2431000312_6939657427_1752351135965.png?ex=692563a8&is=69241228&hm=fb8a54b64d480c641093b6c2f426caa209ee8a3b9347414a6a524bbf024287a4" alt="Harita">
+                <div class="gallery-overlay"><h3>Harita Tasarımı</h3></div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://cdn.discordapp.com/attachments/1329859496582971444/1425582412863246537/2431000312_6939657427_1759954530563.png?ex=69256a55&is=692418d5&hm=e9eca838d9a1d45d1fb887343f79033a345b2ca5428bca282cc9fa7edd9bc882" alt="Sahne">
+                <div class="gallery-overlay"><h3>Oyun Sahnesi</h3></div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://cdn.discordapp.com/attachments/1357462046102523965/1441548380072312974/Nakarat_GFX3_arka_plan_yok.png?ex=69257dcc&is=69242c4c&hm=d31a964f8487ad4fcc2d0a435aa78873ee7f626b2d4375151c27d0d06fdb3cff" alt="GFX">
+                <div class="gallery-overlay"><h3>Karakter GFX</h3></div>
+            </div>
         </div>
     </section>
 
     <section id="team" class="container">
-        <h2 class="section-title" data-aos="fade-right">Ekibimiz</h2>
+        <h2 class="section-title" data-aos="fade-right" data-lang="nav_team">Ekibimiz</h2>
         <div class="grid">
-            <div class="card team-card" data-aos="flip-left"><div class="team-img-box"><img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-671931C945F273649E7133B87985068E-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="YsB" class="team-img"></div><h3>YsB</h3><p>Kurucu & Builder</p></div>
-            <div class="card team-card" data-aos="flip-left" data-aos-delay="200"><div class="team-img-box"><img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-926CD21285B47242352F691B6126C3A7-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="Ananas" class="team-img"></div><h3>Ananas</h3><p>Yazılımcı/Scripter</p></div>
-            <div class="card team-card" data-aos="flip-left" data-aos-delay="400"><div class="team-img-box"><img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-93DA88BCABD89624CF8E802899A65771-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="Nakarat" class="team-img"></div><h3>Nakarat</h3><p>GFX/Mesh/3D Grafik Tasarımcısı</p></div>
+            <div class="card team-card" data-aos="flip-left"><div class="team-img-box"><img src="https://ui-avatars.com/api/?name=YsB&background=00e5ff&color=000&size=128" alt="YsB" class="team-img"></div><h3>YsB</h3><p>Kurucu & Builder</p></div>
+            <div class="card team-card" data-aos="flip-left" data-aos-delay="200"><div class="team-img-box"><img src="https://ui-avatars.com/api/?name=Ananas&background=ffcc00&color=000&size=128" alt="Ananas" class="team-img"></div><h3>Ananas</h3><p>Lead Developer</p></div>
+            <div class="card team-card" data-aos="flip-left" data-aos-delay="400"><div class="team-img-box"><img src="https://cdn.discordapp.com/attachments/1357462046102523965/1441548380072312974/Nakarat_GFX3_arka_plan_yok.png?ex=69257dcc&is=69242c4c&hm=d31a964f8487ad4fcc2d0a435aa78873ee7f626b2d4375151c27d0d06fdb3cff" alt="Nakarat" class="team-img"></div><h3>Nakarat</h3><p>Lead Designer</p></div>
         </div>
     </section>
 
     <section id="faq" class="container">
-        <h2 class="section-title" data-aos="fade-right">SSS</h2>
+        <h2 class="section-title" data-aos="fade-right" data-lang="nav_faq">SSS</h2>
         <div class="accordion" data-aos="fade-up">
-            <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><span>Ödeme Yöntemleri?</span> <i class="fa-solid fa-chevron-down"></i></div><div class="acc-body"><p>IBAN, Nitro, Hediye Kartı.</p></div></div>
-            <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><span>Teslimat Süresi?</span> <i class="fa-solid fa-chevron-down"></i></div><div class="acc-body"><p>1-10 gün.</p></div></div>
-            <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><span>İade?</span> <i class="fa-solid fa-chevron-down"></i></div><div class="acc-body"><p>Kapora iadesi yok.</p></div></div>
+            <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><span data-lang="faq_q1">Ödeme Yöntemleri?</span> <i class="fa-solid fa-chevron-down"></i></div><div class="acc-body"><p data-lang="faq_a1">IBAN, Nitro, Hediye Kartı.</p></div></div>
+            <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><span data-lang="faq_q2">Teslimat Süresi?</span> <i class="fa-solid fa-chevron-down"></i></div><div class="acc-body"><p data-lang="faq_a2">1-10 gün.</p></div></div>
+            <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><span data-lang="faq_q3">İade?</span> <i class="fa-solid fa-chevron-down"></i></div><div class="acc-body"><p data-lang="faq_a3">Kapora iadesi yok.</p></div></div>
         </div>
     </section>
 
     <section id="contact" class="container">
-        <h2 class="section-title" data-aos="fade-right">Talep Oluştur</h2>
+        <h2 class="section-title" data-aos="fade-right" data-lang="nav_contact">Sipariş Ver</h2>
         <div class="social-container" data-aos="zoom-in">
             <p style="color:#aaa; margin-bottom:15px;">Topluluğa Katılın:</p>
             <div class="social-icons">
-                <a href="https://discord.gg/SFDJY9YGvS" target="_blank" class="social-btn"><i class="fa-brands fa-discord"></i></a>
+                <a href="https://discord.gg/S4y9zX" target="_blank" class="social-btn"><i class="fa-brands fa-discord"></i></a>
                 <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
                 <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
         <div class="form-box" data-aos="zoom-in-up">
             <form id="orderForm">
-                <div class="input-group"><label>İsim</label><input type="text" id="clientName" required></div>
+                <div class="input-group"><label data-lang="form_name">İsim</label><input type="text" id="clientName" required></div>
                 <div class="input-group"><label>Discord</label><input type="text" id="discordUser" required></div>
-                <div class="input-group"><label>Hizmet</label><select id="serviceType"><option value="Scripting">Scripting</option><option value="Building">Building</option><option value="GFX">GFX</option><option value="Kampanya">Kampanya</option></select></div>
-                <div class="input-group"><label>Detaylar</label><textarea id="projectDetails" rows="5" required></textarea></div>
-                <div class="input-group checkbox-group" style="display:flex; align-items:center; gap:10px; margin-bottom:20px;"><input type="checkbox" id="tosCheck" required style="width:20px; height:20px; accent-color:var(--primary);"><label for="tosCheck" style="margin:0; cursor:pointer; font-size:0.9rem;"><span onclick="openModal('tosModal')" style="color:var(--primary); text-decoration:underline;">Hizmet Sözleşmesi'ni okudum.</span></label></div>
-                <button type="submit" class="btn full-width">Gönder</button>
+                <div class="input-group"><label data-lang="form_service">Hizmet</label><select id="serviceType"><option value="Scripting">Scripting</option><option value="Building">Building</option><option value="GFX">GFX</option><option value="Kampanya">Kampanya</option></select></div>
+                <div class="input-group"><label data-lang="form_details">Detaylar</label><textarea id="projectDetails" rows="5" required></textarea></div>
+                <div class="input-group checkbox-group" style="display:flex; align-items:center; gap:10px; margin-bottom:20px;"><input type="checkbox" id="tosCheck" required style="width:20px; height:20px; accent-color:var(--primary);"><label for="tosCheck" style="margin:0; cursor:pointer; font-size:0.9rem;"><span onclick="openModal('tosModal')" style="color:var(--primary); text-decoration:underline;" data-lang="form_tos">Hizmet Sözleşmesi'ni okudum.</span></label></div>
+                <button type="submit" class="btn full-width" data-lang="form_submit">Gönder</button>
             </form>
         </div>
     </section>
 
     <section id="tracking" class="container" style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px;">
-        <h2 class="section-title" data-aos="fade-right">Sipariş Takibi</h2>
+        <h2 class="section-title">Sipariş Takibi</h2>
         <div class="form-box" style="text-align: center;" data-aos="zoom-in-up">
             <p style="margin-bottom: 20px; color:#aaa;">Discord adınızı girerek durumu sorgulayın.</p>
             <div class="input-group"><input type="text" id="trackInput" placeholder="Discord Kullanıcı Adı" style="text-align: center;"></div>
