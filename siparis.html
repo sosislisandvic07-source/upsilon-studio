@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sipariş Oluştur | Upsilon Dev Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="siparis.css"> 
+    <style>
+        /* BAŞARILI KOD GİRİLİNCE ÇALIŞACAK EFEKT */
+        .success-mode {
+            border: 2px solid #ffd700 !important; /* Altın Sarısı */
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4), inset 0 0 20px rgba(255, 215, 0, 0.1) !important;
+            animation: pulseGold 2s infinite alternate;
+        }
+        .promo-success-text { color: #ffd700; font-weight: bold; margin-top: 5px; font-size: 0.9rem; }
+        .promo-error-text { color: #ff4444; font-weight: bold; margin-top: 5px; font-size: 0.9rem; }
+
+        @keyframes pulseGold {
+            0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); border-color: #ffd700; }
+            100% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); border-color: #ffea00; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div> 
+
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="Upsilon Logo">
+            <span class="studio-name">Upsilon Dev Studio</span>
+        </div>
+        <nav class="nav">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="fiyatlar.html">Fiyatlar</a>
+            <a href="takip.html">Sipariş Takip</a>
+        </nav>
+    </header>
+
+    <section id="siparis-formu" class="form-section">
+        <div class="form-container" id="mainFormBox">
+            <h1 class="neon-title">Projenizi Başlatalım.</h1>
+            <p style="text-align: center; color: #b0b0b0; margin-bottom: 30px;">
+                Aşağıdaki formu doldurun, Discord üzerinden sizinle iletişime geçelim.
+            </p>
+            
+            <form class="siparis-form">
+                
+                <div class="form-group">
+                    <label>İsim Soyisim / Takma Ad</label>
+                    <input type="text" id="adsoyad" required placeholder="Size nasıl hitap edelim?">
+                </div>
+
+                <div class="form-group">
+                    <label>Discord Kullanıcı Adı (Zorunlu)</label>
+                    <input type="text" id="discord" placeholder="Örn: kullanici_adi" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Hizmet Türü</label>
+                    <select id="hizmet" required>
+                        <option value="">Seçiniz...</option>
+                        <option value="harita">Builder (Harita)</option>
+                        <option value="script">Scripter (Kodlama)</option>
+                        <option value="gfx">GFX / Mesh</option>
+                        <option value="komple">Komple Paket</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Bütçe</label>
+                    <input type="text" id="butce" placeholder="Örn: 500₺ - 1000₺" required>
+                </div>
+
+                <div class="form-group">
+                    <label>İndirim Kodu (Varsa)</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="promoCode" placeholder="YENIBASLANGIC vb." style="text-transform: uppercase;">
+                        <button type="button" onclick="checkPromo()" class="cta-button secondary" style="padding: 10px 20px;">Uygula</button>
+                    </div>
+                    <p id="promoMsg"></p>
+                </div>
+
+                <div class="form-group">
+                    <label>Proje Detayları</label>
+                    <textarea id="aciklama" rows="5" placeholder="Detayları buraya yazın..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-button cta-button primary">Teklifi Gönder</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 Upsilon Dev Studio.</p>
+        </div>
+    </footer>
+
+<script>
+        // 1. İndirim Kodu Kontrolü (Aynı kalır)
+        let appliedPromo = "Yok"; 
+        function checkPromo() {
+            const input = document.getElementById("promoCode");
+            const msg = document.getElementById("promoMsg");
+            const box = document.getElementById("mainFormBox");
+            const code = input.value.toUpperCase().trim();
+            const validCodes = ["YENIBASLANGIC", "BABUS", "UPSILON"];
+
+            // ... (Glow ve kontrol mantığı aynı kalır) ...
+            if (validCodes.includes(code)) {
+                msg.innerHTML = "<i class='fas fa-check'></i> KOD GEÇERLİ! %10 İndirim Tanımlandı.";
+                msg.className = "promo-success-text";
+                box.classList.add("success-mode");
+                appliedPromo = code;
+            } else {
+                msg.innerHTML = "<i class='fas fa-times'></i> Geçersiz kod.";
+                msg.className = "promo-error-text";
+                box.classList.remove("success-mode");
+                appliedPromo = "Yok";
+            }
+        }
+
+        // 2. SİPARİŞİ GÖNDERME SİSTEMİ (MOTOR BURASI)
+        const form = document.querySelector('.siparis-form');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+
+            // Verileri Al
+            const adsoyad = document.getElementById('adsoyad').value;
+            const discord = document.getElementById('discord').value;
+            const hizmet = document.getElementById('hizmet').value;
+            const butce = document.getElementById('butce').value;
+            const aciklama = document.getElementById('aciklama').value;
+            
+            // Tarih ve ID
+            const now = new Date();
+            const tarih = now.toLocaleDateString("tr-TR");
+            const orderID = "UPS-" + Math.floor(1000 + Math.random() * 9000);
+
+            // --- ADIM A: ADMIN PANELİNE KAYDET (LocalStorage) ---
+            const newOrder = {
+                id: orderID,
+                customer: discord,
+                service: hizmet.toUpperCase(),
+                date: tarih,
+                price: butce,
+                status: "Bekliyor",
+                promo: appliedPromo, 
+                progressStep: 1,
+                endDate: "Belirlenmedi",
+                adminNote: "Sipariş inceleniyor."
+            };
+
+            let orders = JSON.parse(localStorage.getItem("upsilonOrders")) || [];
+            orders.unshift(newOrder); 
+            localStorage.setItem("upsilonOrders", JSON.stringify(orders));
+
+            // --- ADIM B: DISCORD'A DİREKT GÖNDERİM (CORS Riski Kabul Edildi) ---
+            const webhookURL = "https://discord.com/api/webhooks/1441523888952447006/5aW7iOLcKCabtM9SPB6g-fW-rL9qv5VHeTgrzUrn7i8UV2mBFYBtTH5sfElPanO-7hww"; 
+
+            const discordPayload = {
+                username: "Sipariş Botu",
+                embeds: [{
+                    title: "🔔 YENİ SİPARİŞ GELDİ!",
+                    color: appliedPromo !== "Yok" ? 16766720 : 5814783, // Altın/Mavi
+                    fields: [
+                        { name: "Kod", value: "`" + orderID + "`", inline: true },
+                        { name: "Müşteri", value: discord, inline: true },
+                        { name: "Hizmet", value: hizmet, inline: true },
+                        { name: "Bütçe", value: butce, inline: true },
+                        { name: "🎟️ İndirim Kodu", value: appliedPromo, inline: true }, 
+                        { name: "Detay", value: aciklama }
+                    ],
+                    footer: { text: "Admin Panelden Kontrol Edin" },
+                    timestamp: new Date()
+                }]
+            };
+
+            fetch(webhookURL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(discordPayload)
+            }).catch(err => console.error("Discord Gönderim Hatası:", err));
+
+
+            // --- SONUÇ: BAŞARILI MESAJI VE YÖNLENDİRME ---
+            alert(`✅ Siparişiniz Alındı!\nKodunuz: ${orderID}`);
+            
+            // Formu temizle ve Takip sayfasına yönlendir
+            form.reset();
+            window.location.href = "takip.html?code=" + orderID;
+        });
+    </script>
+</body>
+</html>

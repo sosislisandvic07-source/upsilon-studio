@@ -3,41 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Paneli - Upsilon</title>
-    
-    <link rel="icon" href="logo.png" type="image/png">
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body, html, * { cursor: auto !important; }
-        .login-screen { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .dashboard { display: none; padding: 50px; }
-        .order-card { position: relative; display: flex; flex-direction: column; gap: 10px; }
-        .status-badge { padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
-        .st-beklemede { background: #ffcc00; color: black; }
-        .st-hazirlaniyor { background: #00e5ff; color: black; }
-        .st-tamamlandi { background: #00cc66; color: black; }
-        .st-iptal { background: #ff3333; color: white; }
-    </style>
+    <title>Admin Panel | Upsilon Dev Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-    <div id="login-section" class="login-screen">
-        <h1>Upsilon Admin</h1>
-        <div class="input-group" style="width: 300px;">
-            <input type="password" id="adminPass" placeholder="Şifre (upsilon123)">
-            <button onclick="checkLogin()" class="btn full-width">Giriş</button>
+
+    <div id="loginScreen">
+        <div class="login-card">
+            <h2>UPSILON <span style="color:var(--accent-blue)">ADMIN</span></h2>
+            <p>Güvenlik kodunu girin.</p>
+            
+            <input type="password" id="adminPass" class="login-input" placeholder="••••••">
+            <button id="loginBtn" class="login-btn">GİRİŞ YAP</button> 
+            
+            <p id="errorText" class="error-msg"></p>
+            <a href="index.html" class="back-link">← Siteye Dön</a>
         </div>
-        <p id="login-msg" style="color:red; margin-top:10px;"></p>
     </div>
-    <div id="dashboard-section" class="dashboard">
-        <div style="display:flex; justify-content:space-between; margin-bottom:30px;">
-            <h2>Gelen Siparişler</h2>
-            <button onclick="location.reload()" class="btn">Yenile</button>
+
+    <div id="adminPanel" class="admin-wrapper" style="display: none;">
+        
+        <aside class="sidebar">
+            <div class="sidebar-header"><i class="fas fa-cube"></i> Admin Panel</div>
+            <ul class="sidebar-menu">
+                <li><a href="#" id="menu-dashboard" class="active"><i class="fas fa-home"></i> Genel Bakış</a></li>
+                <li><a href="#" id="menu-customers"><i class="fas fa-users"></i> Siparişler</a></li>
+            </ul>
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Çıkış</a>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <h2 id="page-title">Genel Bakış</h2>
+                <div class="admin-info">
+                    <span>Yönetici</span>
+                    <div class="avatar"><i class="fas fa-user"></i></div>
+                </div>
+            </div>
+
+            <div id="view-dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon icon-blue"><i class="fas fa-cubes"></i></div>
+                        <div class="stat-info"><h3>Aktif Proje</h3><p>5</p></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-purple"><i class="fas fa-clock"></i></div>
+                        <div class="stat-info"><h3>Bekleyen</h3><p>3</p></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-green"><i class="fas fa-wallet"></i></div>
+                        <div class="stat-info"><h3>Kasa</h3><p>18.450₺</p></div>
+                    </div>
+                </div>
+                
+                <div class="table-wrapper">
+                    <div class="table-header"><h3>Son Hareketler</h3></div>
+                    <table>
+                        <thead><tr><th>ID</th><th>Müşteri</th><th>Hizmet</th><th>Durum</th></tr></thead>
+                        <tbody id="dashboardTableBody">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="view-customers" style="display: none;">
+                <div class="table-wrapper">
+                    <div class="table-header">
+                        <h3>Sipariş Yönetimi</h3>
+                        <button class="action-btn" onclick="renderCustomers()"><i class="fas fa-sync"></i> Yenile</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Müşteri (DC)</th>
+                                <th>Hizmet</th>
+                                <th>Tarih</th>
+                                <th>Fiyat</th>
+                                <th>Durum</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customerTableBody">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="editModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <h3>Sipariş Detayları</h3>
+            
+            <div style="display: flex; gap: 10px;">
+                <div class="form-group" style="flex:1;">
+                    <label>Sipariş ID</label>
+                    <input type="text" id="modalID" readonly style="opacity: 0.6; cursor: not-allowed;">
+                </div>
+                <div class="form-group" style="flex:1;">
+                    <label>Müşteri</label>
+                    <input type="text" id="modalCustomer" readonly style="opacity: 0.6; cursor: not-allowed;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="color: var(--accent-purple); font-weight: bold;">🎟️ Kullanılan İndirim Kodu</label>
+                <input type="text" id="modalPromo" readonly style="border-color: var(--accent-purple); color: var(--accent-purple); font-weight: bold; text-align: center;">
+            </div>
+
+            <div class="form-group">
+                <label>Genel Durum</label>
+                <select id="modalStatus">
+                    <option value="Bekliyor">Bekliyor</option>
+                    <option value="Yapılıyor">Yapılıyor</option>
+                    <option value="Tamamlandı">Tamamlandı</option>
+                    <option value="İptal">İptal</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>İlerleme Çubuğu (1-5 Arası)</label>
+                <select id="modalProgress">
+                    <option value="1">1. Sipariş Alındı</option>
+                    <option value="2">2. Planlama</option>
+                    <option value="3">3. Geliştirme</option>
+                    <option value="4">4. Test & Fix</option>
+                    <option value="5">5. Teslimat</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Tahmini Bitiş Tarihi</label>
+                <input type="text" id="modalEndDate" placeholder="Örn: 15 Mart 2025">
+            </div>
+
+            <div class="form-group">
+                <label>Müşteriye Not (Admin Notu)</label>
+                <textarea id="modalNote" rows="3" placeholder="Müşterinin takip ekranında göreceği not..."></textarea>
+            </div>
+            
+            <div class="modal-actions" style="margin-top: 20px; display: flex; gap: 10px;">
+                <button onclick="deleteOrder()" class="login-btn" style="background-color: #ef4444; flex:1;">
+                    <i class="fas fa-trash"></i> SİL
+                </button>
+                
+                <button onclick="closeModal()" class="login-btn" style="background-color: #333; flex:1;">İptal</button>
+                <button onclick="saveChanges()" class="login-btn" style="flex:1;">KAYDET</button>
+            </div>
         </div>
-        <div class="grid" id="orders-container">Loading...</div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="admin.js"></script>
 </body>
 </html>

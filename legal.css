@@ -1,0 +1,60 @@
+/* legal.css - Yasal Metin Sayfaları İçin Temel Stiller */
+
+/* Genel Kontenjan ve Merkezleme */
+.legal-content-section {
+    padding: 80px 5%;
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 80vh; /* Sayfanın boş kalmasını engeller */
+}
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.legal-content-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #F0F0F0;
+    border-bottom: 2px solid var(--vurgu-mor);
+    padding-bottom: 10px;
+}
+
+.lead-text {
+    font-size: 1.1rem;
+    color: #C0C0C0;
+    margin-bottom: 40px;
+}
+
+.legal-maddeler h3 {
+    font-size: 1.6rem;
+    color: var(--vurgu-mint);
+    margin-top: 35px;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #333;
+    padding-bottom: 5px;
+}
+
+.legal-maddeler ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.legal-maddeler li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 15px;
+    color: #A0A0A0;
+}
+
+.legal-maddeler li::before {
+    content: '▶'; /* Üçgen madde işareti */
+    color: var(--vurgu-mor);
+    font-weight: bold;
+    font-size: 0.8rem;
+    position: absolute;
+    left: 0;
+    top: 5px;
+}

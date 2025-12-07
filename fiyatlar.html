@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiyatlandırma & Paketler | Upsilon Dev Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="siparis.css"> 
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="Upsilon Logo">
+            <span class="studio-name">Upsilon Dev Studio</span>
+        </div>
+        <nav class="nav">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="fiyatlar.html" class="nav-highlight">Fiyatlar</a>
+            <a href="siparis.html" class="cta-button primary">Sipariş Oluştur</a> 
+        </nav>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            
+            <div class="campaign-banner">
+                <h2 style="font-size: 2rem; margin-bottom: 10px;">🚀 YENİ BAŞLAYANLARA DEV DESTEK!</h2>
+                <p style="color: #ccc; margin-bottom: 20px;">İlk kez oyun yapacaklara özel, kâr amacı gütmeyen başlangıç fiyatlarıdır.</p>
+                
+                <div class="countdown-timer">
+                    <span style="display:block; margin-bottom:10px; color:#aaa; font-size:0.9rem;">KAMPANYA BİTİŞ SÜRESİ:</span>
+                    <div id="countdown" style="font-family: 'Inter', monospace; font-size: 1.5rem; color: var(--vurgu-mint);">
+                        <span id="days">00</span> Gün :
+                        <span id="hours">00</span> Saat :
+                        <span id="minutes">00</span> Dk :
+                        <span id="seconds">00</span> Sn
+                    </div>
+                </div>
+                <p class="campaign-note" style="margin-top: 15px;">*Kod: <strong>YENIBASLANGIC</strong></p>
+            </div>
+
+            <div class="section-header" style="margin-top: 60px; text-align: left;">
+                <h3 style="color: var(--neon-magenta); font-size: 1.5rem;"><i class="fas fa-bolt"></i> Yeni Başlayan Tarifesi (İndirimli)</h3>
+                <div class="neon-line magenta" style="margin: 10px 0 30px 0; width: 100px;"></div>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="price-card" style="border-color: var(--neon-magenta);">
+                    <h3 style="color: var(--neon-magenta);">🛠️ Başlangıç Builder</h3>
+                    <ul class="price-list">
+                        <li>Mini Çalışma <span class="price-tag">40₺ / Saat</span></li>
+                        <li>Standart <span class="price-tag">60₺ / Saat</span></li>
+                        <li>Orta Seviye <span class="price-tag">80₺ / Saat</span></li>
+                        <li class="highlight" style="color: #d946ef;">✨ Işık + Optimizasyon Hediye!</li>
+                    </ul>
+                    <a href="siparis.html" class="cta-button secondary" style="width:100%; border-color: var(--neon-magenta); color:white;">Bu Paketi Seç</a>
+                </div>
+
+                <div class="price-card" style="border-color: var(--neon-magenta);">
+                    <h3 style="color: var(--neon-magenta);">💻 Başlangıç Scripter</h3>
+                    <ul class="price-list">
+                        <li>Basit Sistem <span class="price-tag">20₺</span></li>
+                        <li>Orta Sistem <span class="price-tag">50 - 90₺</span></li>
+                        <li>Gelişmiş Sistem <span class="price-tag">200 - 400₺</span></li>
+                        <li class="highlight" style="color: #d946ef;">✨ Kurulum Desteği Dahil</li>
+                    </ul>
+                    <a href="siparis.html" class="cta-button secondary" style="width:100%; border-color: var(--neon-magenta); color:white;">Bu Paketi Seç</a>
+                </div>
+
+                <div class="price-card" style="border-color: var(--neon-magenta);">
+                    <h3 style="color: var(--neon-magenta);">📦 Başlangıç Paketleri</h3>
+                    <ul class="price-list">
+                        <li>Mini Oyun Paketi <span class="price-tag">150 - 300₺</span></li>
+                        <li>Orta Oyun Paketi <span class="price-tag">350 - 900₺</span></li>
+                        <li>Full Proje <span class="price-tag">1200₺+</span></li>
+                        <li class="highlight" style="color: #d946ef;">✨ Hedef: Temeli Sağlam Kurmak</li>
+                    </ul>
+                    <a href="siparis.html" class="cta-button secondary" style="width:100%; border-color: var(--neon-magenta); color:white;">Bu Paketi Seç</a>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 80px; text-align: left;">
+                <h3 style="color: var(--vurgu-mavi); font-size: 1.5rem;"><i class="fas fa-briefcase"></i> Profesyonel Fiyat Listesi</h3>
+                <div class="neon-line" style="margin: 10px 0 30px 0; width: 100px;"></div>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>🛠️ PRO Builder</h3>
+                    <ul class="price-list">
+                        <li>Standart Detay <span class="price-tag">80₺ / Saat</span></li>
+                        <li>Orta Detay <span class="price-tag">100₺ / Saat</span></li>
+                        <li>Yüksek Detay <span class="price-tag">120 - 150₺ / Saat</span></li>
+                    </ul>
+                    <a href="siparis.html" class="cta-button primary" style="width:100%">Teklif Al</a>
+                </div>
+
+                <div class="price-card">
+                    <h3>💻 PRO Scripter</h3>
+                    <ul class="price-list">
+                        <li>Orta Sistem <span class="price-tag">80 - 150₺</span></li>
+                        <li>Kompleks Sistem <span class="price-tag">300 - 600₺</span></li>
+                        <li>Özel Yapay Zeka <span class="price-tag">Teklif Alınız</span></li>
+                    </ul>
+                    <a href="siparis.html" class="cta-button primary" style="width:100%">Teklif Al</a>
+                </div>
+
+                <div class="price-card">
+                    <h3>🎨 GFX & Mesh Artist</h3>
+                    <ul class="price-list">
+                        <li>Basit Mesh <span class="price-tag">50 - 150₺</span></li>
+                        <li>Detaylı Mesh <span class="price-tag">300 - 600₺</span></li>
+                        <li>Oyun Kapağı (GFX) <span class="price-tag">100 - 150₺</span></li>
+                        <li>Logo Tasarımı <span class="price-tag">150 - 400₺</span></li>
+                    </ul>
+                    <a href="siparis.html" class="cta-button primary" style="width:100%">Teklif Al</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px; text-align: center;">
+                <p style="color: #888; font-size: 0.9rem;">
+                    ⚠️ <strong>Önemli:</strong> Fiyatlar projenin detayına göre değişiklik gösterebilir. Kapora alınmadan işe başlanmaz.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="legal-links">
+                <a href="hizmet.html">Hizmet Sözleşmesi</a>
+                <a href="gizlilik.html">Gizlilik Politikası</a>
+                <a href="admin.html">Admin Girişi</a>
+            </div>
+            <p>© 2025 Upsilon Dev Studio. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+<script>
+        // KAMPANYA BİTİŞ TARİHİ (Sabit Tarih)
+        // Burayı değiştirebilirsin. Format: "Ay Gün, Yıl Saat:Dakika:Saniye"
+        // Şu an: 1 Mart 2026 Gece 23:59'a ayarlı.
+        const campaignEndDate = new Date("March 1, 2026 23:59:59").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime(); // Şu anki zaman
+            const distance = campaignEndDate - now; // Kalan zaman farkı
+
+            // Matematiksel hesaplamalar
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // HTML'e yazdırma (Sayılar 10'dan küçükse başına 0 ekler)
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            // Süre bittiyse yazıyı değiştir
+            if (distance < 0) {
+                clearInterval(interval);
+                document.getElementById("countdown").innerHTML = "<span style='color:red;'>KAMPANYA SONA ERDİ!</span>";
+            }
+        }
+
+        // Her saniye güncelle
+        const interval = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Sayfa açılır açılmaz hesapla, 1 sn beklemesin
+    </script>
+</body>
+</html>
