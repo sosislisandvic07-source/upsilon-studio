@@ -102,8 +102,21 @@
     </footer>
 
 <script>
-        // 1. İndirim Kodu Kontrolü (Aynı kalır)
+        // 1. DİSCORD WEBHOOK LİNKİ (BU LİNK AÇIK VE GÜVENSİZDİR)
+        const webhookURL = "https://discord.com/api/webhooks/1441523888952447006/5aW7iOLcKCabtM9SPB6g-fW-rL9qv5VHeTgrzUrn7i8UV2mBFYBtTH5sfElPanO-7hww"; 
+        
+        // --- LOCAL STORAGE YARDIMCI FONKSİYONLARI ---
+        function getOrders() {
+            const stored = localStorage.getItem("upsilonOrders");
+            return stored ? JSON.parse(stored) : [];
+        }
+        function saveOrders(orders) {
+            localStorage.setItem("upsilonOrders", JSON.stringify(orders));
+        }
+
+        // 2. İndirim Kodu Kontrolü
         let appliedPromo = "Yok"; 
+
         function checkPromo() {
             const input = document.getElementById("promoCode");
             const msg = document.getElementById("promoMsg");
@@ -111,7 +124,6 @@
             const code = input.value.toUpperCase().trim();
             const validCodes = ["YENIBASLANGIC", "BABUS", "UPSILON"];
 
-            // ... (Glow ve kontrol mantığı aynı kalır) ...
             if (validCodes.includes(code)) {
                 msg.innerHTML = "<i class='fas fa-check'></i> KOD GEÇERLİ! %10 İndirim Tanımlandı.";
                 msg.className = "promo-success-text";
@@ -125,76 +137,82 @@
             }
         }
 
-        // 2. SİPARİŞİ GÖNDERME SİSTEMİ (MOTOR BURASI)
+
+        // 3. SİPARİŞİ GÖNDERME SİSTEMİ (MOTOR BURASI)
         const form = document.querySelector('.siparis-form');
         
         form.addEventListener('submit', function(e) {
             e.preventDefault(); 
 
-            // Verileri Al
-            const adsoyad = document.getElementById('adsoyad').value;
-            const discord = document.getElementById('discord').value;
-            const hizmet = document.getElementById('hizmet').value;
-            const butce = document.getElementById('butce').value;
-            const aciklama = document.getElementById('aciklama').value;
-            
-            // Tarih ve ID
-            const now = new Date();
-            const tarih = now.toLocaleDateString("tr-TR");
-            const orderID = "UPS-" + Math.floor(1000 + Math.random() * 9000);
+            try {
+                // Verileri Al
+                const adsoyad = document.getElementById('adsoyad').value;
+                const discord = document.getElementById('discord').value;
+                const hizmet = document.getElementById('hizmet').value;
+                const butce = document.getElementById('butce').value;
+                const aciklama = document.getElementById('aciklama').value;
+                
+                // Tarih ve ID
+                const now = new Date();
+                const tarih = now.toLocaleDateString("tr-TR");
+                const orderID = "UPS-" + Math.floor(1000 + Math.random() * 9000);
 
-            // --- ADIM A: ADMIN PANELİNE KAYDET (LocalStorage) ---
-            const newOrder = {
-                id: orderID,
-                customer: discord,
-                service: hizmet.toUpperCase(),
-                date: tarih,
-                price: butce,
-                status: "Bekliyor",
-                promo: appliedPromo, 
-                progressStep: 1,
-                endDate: "Belirlenmedi",
-                adminNote: "Sipariş inceleniyor."
-            };
+                // --- ADIM A: ADMIN PANELİNE KAYDET (LocalStorage) ---
+                const newOrder = {
+                    id: orderID,
+                    customer: discord,
+                    service: hizmet.toUpperCase(),
+                    date: tarih,
+                    price: butce,
+                    status: "Bekliyor",
+                    promo: appliedPromo, 
+                    progressStep: 1,
+                    endDate: "Belirlenmedi",
+                    adminNote: "Sipariş inceleniyor."
+                };
 
-            let orders = JSON.parse(localStorage.getItem("upsilonOrders")) || [];
-            orders.unshift(newOrder); 
-            localStorage.setItem("upsilonOrders", JSON.stringify(orders));
+                let orders = getOrders();
+                orders.unshift(newOrder); 
+                saveOrders(orders);
 
-            // --- ADIM B: DISCORD'A DİREKT GÖNDERİM (CORS Riski Kabul Edildi) ---
-            const webhookURL = "https://discord.com/api/webhooks/1441523888952447006/5aW7iOLcKCabtM9SPB6g-fW-rL9qv5VHeTgrzUrn7i8UV2mBFYBtTH5sfElPanO-7hww"; 
+                // --- ADIM B: DISCORD'A DİREKT GÖNDERİM (JS Fetch) ---
+                const discordPayload = {
+                    username: "Sipariş Botu",
+                    embeds: [{
+                        title: "🔔 YENİ SİPARİŞ GELDİ!",
+                        color: appliedPromo !== "Yok" ? 16766720 : 5814783,
+                        fields: [
+                            { name: "Kod", value: "`" + orderID + "`", inline: true },
+                            { name: "Müşteri", value: discord, inline: true },
+                            { name: "Hizmet", value: hizmet, inline: true },
+                            { name: "Bütçe", value: butce, inline: true },
+                            { name: "🎟️ İndirim Kodu", value: appliedPromo, inline: true }, 
+                            { name: "Detay", value: aciklama }
+                        ],
+                        footer: { text: "Admin Panelden Kontrol Edin" },
+                        timestamp: new Date()
+                    }]
+                };
 
-            const discordPayload = {
-                username: "Sipariş Botu",
-                embeds: [{
-                    title: "🔔 YENİ SİPARİŞ GELDİ!",
-                    color: appliedPromo !== "Yok" ? 16766720 : 5814783, // Altın/Mavi
-                    fields: [
-                        { name: "Kod", value: "`" + orderID + "`", inline: true },
-                        { name: "Müşteri", value: discord, inline: true },
-                        { name: "Hizmet", value: hizmet, inline: true },
-                        { name: "Bütçe", value: butce, inline: true },
-                        { name: "🎟️ İndirim Kodu", value: appliedPromo, inline: true }, 
-                        { name: "Detay", value: aciklama }
-                    ],
-                    footer: { text: "Admin Panelden Kontrol Edin" },
-                    timestamp: new Date()
-                }]
-            };
-
-            fetch(webhookURL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(discordPayload)
-            }).catch(err => console.error("Discord Gönderim Hatası:", err));
+                // Bu istek tarayıcı tarafından BLOKLANABİLİR, ancak XAMPP'e gerek kalmaz.
+                fetch(webhookURL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(discordPayload)
+                }).catch(err => console.error("Discord Gönderim Hatası (CORS):", err));
 
 
-            // --- SONUÇ: BAŞARILI MESAJI VE YÖNLENDİRME ---
-            alert(`✅ Siparişiniz Alındı!\nKodunuz: ${orderID}`);
-            
-            // Formu temizle ve Takip sayfasına yönlendir
-            form.reset();
-            window.location.href = "takip.html?code=" + orderID;
+                // --- SONUÇ: BAŞARILI MESAJI VE YÖNLENDİRME ---
+                alert(`✅ Siparişiniz Alındı!\nKodunuz: ${orderID}`);
+                
+                // Formu temizle ve Takip sayfasına yönlendir
+                form.reset();
+                window.location.href = "takip.html?code=" + orderID;
+
+            } catch (error) {
+                console.error("Kritik Kayıt Hatası:", error);
+                alert("❌ Siparişiniz kaydedilemedi. Konsolu kontrol edin.");
+            }
         });
     </script>
 </body>
