@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telif Hakları | Upsilon Dev Studio</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'], },
+                    colors: { dark: '#050508', neonPurple: '#8B5CF6', neonPink: '#EC4899', neonBlue: '#6366F1', warning: '#F59E0B' },
+                    backgroundImage: { 'ups-gradient': 'linear-gradient(to right, #6366F1, #8B5CF6, #EC4899)', }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050508; color: white; overflow-x: hidden; }
+        .glass { background: rgba(5, 5, 8, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .rule-box { border-left: 4px solid; background: rgba(255, 255, 255, 0.02); }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+            <nav class="fixed w-full z-50 glass top-0 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <img src="logo.png" alt="Upsilon Logo" class="w-11 h-11 object-contain logo-glow group-hover:scale-110 transition-transform duration-500">
+            <div class="leading-tight">
+                <span class="block font-display font-bold text-lg tracking-wide text-white group-hover:text-neonPurple transition-colors">UPSILON</span>
+                <span class="block text-[10px] text-gray-500 font-medium tracking-[0.2em] group-hover:text-white transition-colors">DEV STUDIO</span>
+            </div>
+        </a>
+        
+        <div class="hidden md:flex gap-6 lg:gap-8 text-sm font-medium text-gray-400 items-center">
+            <a href="index.html" class="hover:text-white transition">Ana Sayfa</a>
+            <a href="portfolyo.html" class="hover:text-white transition">Portfolyo</a>
+            <a href="magaza.html" class="text-neonBlue hover:text-white font-bold transition-all flex items-center gap-1"><i data-lucide="shopping-bag" class="w-3 h-3"></i> Mağaza</a>
+            <a href="hizmetler.html" class="hover:text-white transition">Hizmetler</a>
+            <a href="fiyatlar.html" class="hover:text-white transition">Fiyatlar</a>
+            <a href="sss.html" class="hover:text-white transition-all">S.S.S</a>
+            <a href="iletisim.html" class="hover:text-white transition">İletişim</a>
+            <a href="siparistakip.html" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-neonBlue hover:text-white transition-all group">
+                <i data-lucide="search" class="w-3 h-3 group-hover:text-neonBlue transition-colors"></i> 
+                Sipariş Takip
+            </a>
+        </div>
+<a href="basvuru.html" class="text-neonPink hover:text-white transition-all flex items-center gap-1">
+                <i data-lucide="user-plus" class="w-3 h-3"></i> Başvuru
+            </a>
+        <a href="iletisim.html" class="hidden md:flex items-center gap-2 bg-ups-gradient px-6 py-2.5 rounded-full text-sm font-bold text-white shadow-lg shadow-neonPurple/20 hover:shadow-neonPurple/50 hover:scale-105 transition-all">
+            Sipariş Ver <i data-lucide="sparkles" class="w-3 h-3 text-white/80"></i>
+        </a>
+    </div>
+</nav>
+
+    <main class="relative z-10 pt-32 pb-20 px-6 max-w-4xl mx-auto">
+        
+        <div class="text-center mb-16" data-aos="fade-down">
+            <div class="w-16 h-16 mx-auto bg-neonPurple/10 rounded-2xl flex items-center justify-center text-neonPurple mb-6 border border-neonPurple/20">
+                <i data-lucide="copyright" class="w-8 h-8"></i>
+            </div>
+            <h1 class="font-display font-bold text-4xl md:text-5xl mb-4">Telif Hakları & <span class="text-transparent bg-clip-text bg-ups-gradient">Kullanım İzinleri</span></h1>
+            <p class="text-gray-400">Bu politikalar, hem müşterinin hem de stüdyonun haklarını korumak için vardır babuş.</p>
+        </div>
+
+        <div class="grid gap-6" data-aos="fade-up">
+            
+            <div class="rule-box border-neonBlue p-6 rounded-r-xl">
+                <h3 class="font-bold text-lg text-white mb-2 flex items-center gap-2"><i data-lucide="hammer" class="w-5 h-5 text-neonBlue"></i> Yapım Süreci Sahipliği</h3>
+                <p class="text-gray-400 text-sm">Upsilon Dev Studio tarafından oluşturulan tüm çalışmalar (map, mesh, script, gfx) yapım süreci devam ettiği müddetçe stüdyoya aittir.</p>
+            </div>
+
+            <div class="rule-box border-green-500 p-6 rounded-r-xl">
+                <h3 class="font-bold text-lg text-white mb-2 flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-green-500"></i> Tam Sahiplik Devri</h3>
+                <p class="text-gray-400 text-sm">Müşteri ödemeyi tamamladıktan sonra iş, **tam sahiplik haklarıyla** müşteriye devredilir. Artık mal senindir babuş.</p>
+            </div>
+
+            <div class="rule-box border-white/50 p-6 rounded-r-xl">
+                <h3 class="font-bold text-lg text-white mb-2 flex items-center gap-2"><i data-lucide="unlock" class="w-5 h-5 text-gray-300"></i> Özgür Kullanım</h3>
+                <p class="text-gray-400 text-sm">Müşteri, satın aldığı ve ödemesini yaptığı çalışmayı istediği projede, oyunda veya platformda özgürce kullanabilir.</p>
+            </div>
+
+            <div class="rule-box border-red-500 bg-red-500/5 p-6 rounded-r-xl">
+                <h3 class="font-bold text-lg text-white mb-2 flex items-center gap-2"><i data-lucide="ban" class="w-5 h-5 text-red-500"></i> İzinsiz Satış & Paylaşım</h3>
+                <p class="text-gray-300 text-sm">Çalışmanın yeniden satışı (resell), internette bedava paylaşımı veya üçüncü bir kişiye devri **kesinlikle yasaktır** (özel izin alınmadıkça).</p>
+            </div>
+
+            <div class="rule-box border-warning p-6 rounded-r-xl">
+                <h3 class="font-bold text-lg text-white mb-2 flex items-center gap-2"><i data-lucide="alert-triangle" class="w-5 h-5 text-warning"></i> İhlal Durumu</h3>
+                <p class="text-gray-400 text-sm">Çalıntı çalışma veya izinsiz dağıtım tespit edilirse sipariş iptal edilir, destek kesilir ve erişim kaldırılır.</p>
+            </div>
+
+             <div class="rule-box border-neonPink p-6 rounded-r-xl">
+                <h3 class="font-bold text-lg text-white mb-2 flex items-center gap-2"><i data-lucide="camera" class="w-5 h-5 text-neonPink"></i> Portföy Hakkı</h3>
+                <p class="text-gray-400 text-sm">Stüdyo, yaptığı çalışmayı sadece **müşterinin izniyle** referans olarak portföyünde sergileyebilir.</p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="border-t border-white/5 bg-black/50 pt-16 pb-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <img src="logo.png" class="w-8 h-8 object-contain">
+                    <span class="font-display font-bold text-xl tracking-wide text-white">UPSILON</span>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
+                    Roblox evreninde hayal ettiğin dünyaları gerçeğe dönüştürüyoruz. Profesyonel building, scripting ve tasarım hizmetleri için doğru adrestesin.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-neonBlue hover:border-transparent transition-all"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-neonPurple transition-all"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-black transition-all"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                </div>
+                
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white mb-6">Hızlı Erişim</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="index.html" class="hover:text-neonPurple transition-colors">Ana Sayfa</a></li>
+                    <li><a href="portfolyo.html" class="hover:text-neonPurple transition-colors">Portfolyo</a></li>
+                    <li><a href="magaza.html" class="hover:text-neonPurple transition-colors">Hazır Ürünler</a></li>
+                    <li><a href="fiyatlar.html" class="hover:text-neonPurple transition-colors">Fiyatlandırma</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white mb-6">Kurumsal</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="sss.html" class="hover:text-neonBlue transition-colors flex items-center gap-2"><i data-lucide="help-circle" class="w-3 h-3"></i> S.S.S (Merak Edilenler)</a></li>
+                    <li><a href="hakkimizda.html" class="hover:text-neonBlue transition-colors">Hakkımızda</a></li>
+                    <li><a href="iletisim.html" class="hover:text-neonBlue transition-colors">İletişim</a></li>
+                    <li><a href="sartlar.html" class="hover:text-neonBlue transition-colors">Hizmet Şartları</a></li>
+                    <li><a href="telif-haklari.html" class="hover:text-neonBlue transition-colors">Telif Hakları & İzinler</a></li>
+                    <li><a href="gizlilik-politikasi.html" class="hover:text-neonBlue transition-colors">Gizlilik Politikası</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-600 text-sm">© 2025 Upsilon Dev Studio. Tüm hakları saklıdır.</p>
+            <div class="flex items-center gap-2 opacity-50">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-xs text-gray-500 font-mono">SYSTEM: ONLINE</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init(); lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim | Upsilon Dev Studio</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'], },
+                    colors: { dark: '#050508', neonPurple: '#8B5CF6', neonPink: '#EC4899', neonBlue: '#6366F1', surface: 'rgba(255,255,255,0.03)', success: '#10B981' },
+                    backgroundImage: { 'ups-gradient': 'linear-gradient(to right, #6366F1, #8B5CF6, #EC4899)', },
+                    animation: { 'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050508; color: white; overflow-x: hidden; }
+        .glass { background: rgba(5, 5, 8, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .moving-glow-card { position: relative; border-radius: 1.5rem; padding: 1px; background: linear-gradient(45deg, #6366F1, #EC4899); }
+        .card-inner { background: #050508; border-radius: inherit; height: 100%; width: 100%; position: relative; }
+        input, textarea, select { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: white; transition: all 0.3s; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #8B5CF6; box-shadow: 0 0 15px rgba(139, 92, 246, 0.2); }
+        .file-upload-box { border: 2px dashed rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; border-radius: 12px; background: rgba(255,255,255,0.02); }
+        .file-upload-box:hover { border-color: #8B5CF6; background: rgba(139, 92, 246, 0.05); }
+        .success-input { border-color: #10B981 !important; background: rgba(16, 185, 129, 0.1) !important; }
+        .nav-active { color: white !important; position: relative; text-shadow: 0 0 10px rgba(139, 92, 246, 0.8); }
+        .nav-active::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 100%; height: 2px; background: var(--ups-gradient, linear-gradient(to right, #6366F1, #8B5CF6, #EC4899)); box-shadow: 0 0 15px 2px rgba(139, 92, 246, 0.7); border-radius: 20px; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+<nav class="fixed w-full z-50 glass top-0 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <img src="logo.png" alt="Upsilon Logo" class="w-11 h-11 object-contain logo-glow group-hover:scale-110 transition-transform duration-500">
+            <div class="leading-tight">
+                <span class="block font-display font-bold text-lg tracking-wide text-white group-hover:text-neonPurple transition-colors">UPSILON</span>
+                <span class="block text-[10px] text-gray-500 font-medium tracking-[0.2em] group-hover:text-white transition-colors">DEV STUDIO</span>
+            </div>
+        </a>
+        <div class="hidden md:flex gap-6 lg:gap-8 text-sm font-medium text-gray-400 items-center">
+            <a href="index.html" class="hover:text-white transition">Ana Sayfa</a>
+            <a href="portfolyo.html" class="hover:text-white transition">Portfolyo</a>
+            <a href="magaza.html" class="text-neonBlue hover:text-white font-bold transition-all flex items-center gap-1"><i data-lucide="shopping-bag" class="w-3 h-3"></i> Mağaza</a>
+            <a href="hizmetler.html" class="hover:text-white transition">Hizmetler</a>
+            <a href="fiyatlar.html" class="hover:text-white transition">Fiyatlar</a>
+            <a href="sss.html" class="hover:text-white transition-all">S.S.S</a>
+            <a href="iletisim.html" class="nav-active">İletişim</a>
+            <a href="siparistakip.html" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-neonBlue hover:text-white transition-all group">
+                <i data-lucide="search" class="w-3 h-3 group-hover:text-neonBlue transition-colors"></i> Sipariş Takip
+            </a>
+        </div>
+        <a href="basvuru.html" class="text-neonPink hover:text-white transition-all flex items-center gap-1"><i data-lucide="user-plus" class="w-3 h-3"></i> Başvuru</a>
+        <a href="iletisim.html" class="hidden md:flex items-center gap-2 bg-ups-gradient px-6 py-2.5 rounded-full text-sm font-bold text-white shadow-lg shadow-neonPurple/20 hover:shadow-neonPurple/50 hover:scale-105 transition-all">Sipariş Ver <i data-lucide="sparkles" class="w-3 h-3 text-white/80"></i></a>
+    </div>
+</nav>
+
+<main class="pt-32 pb-20 px-6 flex-grow flex items-center">
+    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div data-aos="fade-right">
+            <h1 class="font-display font-bold text-5xl mb-6">Projenizi <br><span class="text-transparent bg-clip-text bg-ups-gradient">Detaylandırın.</span></h1>
+            <p class="text-gray-400 text-lg mb-10 leading-relaxed">Vizyonunuzu bizimle paylaşın, teknik dökümanlarınızı iletin; profesyonel çözümleme ve uygulama sürecini Upsilon Dev Studio uzmanlığına emanet edin.</p>
+            <div class="space-y-6">
+                <div class="p-6 rounded-2xl bg-surface border border-white/5 flex items-center gap-4"><div class="w-12 h-12 bg-neonBlue/20 rounded-full flex items-center justify-center text-neonBlue"><i data-lucide="mail" class="w-6 h-6"></i></div><div><div class="text-xs text-gray-500 uppercase">Email</div><div class="font-medium text-white">upsilondevs@gmail.com</div></div></div>
+                <div class="p-6 rounded-2xl bg-surface border border-white/5 flex items-center gap-4"><div class="w-12 h-12 bg-neonPurple/20 rounded-full flex items-center justify-center text-neonPurple"><i data-lucide="gamepad-2" class="w-6 h-6"></i></div><div><div class="text-xs text-gray-500 uppercase">Discord</div><div class="font-medium text-white">YsB</div></div></div>
+            </div>
+        </div>
+
+        <div id="formContainer" class="moving-glow-card" data-aos="fade-left">
+            <div class="card-inner p-8">
+                <form id="orderForm" class="space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="space-y-2"><label class="text-xs text-gray-400 uppercase font-bold">Ad Soyad</label><input type="text" id="custName" class="w-full p-4 rounded-xl" placeholder="Adınız"></div>
+                        <div class="space-y-2"><label class="text-xs text-gray-400 uppercase font-bold">Discord ID</label><input type="text" id="custDiscord" class="w-full p-4 rounded-xl" placeholder="kullanıcı#1234"></div>
+                    </div>
+                    <div class="space-y-2"><label class="text-xs text-gray-400 uppercase font-bold">Hizmet Türü</label>
+                        <select id="serviceSelect" class="w-full p-4 rounded-xl cursor-pointer">
+                            <option class="bg-black">Seçiniz...</option>
+                            <option class="bg-black">Küçük Harita Tasarımı</option>
+                            <option class="bg-black">Büyük Harita Tasarımı</option>
+                            <option class="bg-black">GFX Tasarımı</option>
+                            <option class="bg-black">Mesh Modelleme</option>
+                            <option class="bg-black">Yazılım (Scripting)</option>
+                            <option class="bg-black">Komple Oyun Yapımı</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs text-gray-400 uppercase font-bold">Referans Görsel (Varsa)</label>
+                        <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="fileSelected(this)">
+                        <div class="file-upload-box group" onclick="document.getElementById('fileInput').click()">
+                            <div id="uploadPlaceholder" class="text-center">
+                                <i data-lucide="image-plus" class="w-8 h-8 mx-auto text-gray-500 group-hover:text-neonPurple mb-2 transition-colors"></i>
+                                <p class="text-sm text-gray-400">Resim seçmek için <span class="text-neonBlue font-bold">tıkla</span> babuş</p>
+                                <p class="text-[10px] text-gray-600 mt-1">Discord'a ve Panele düşecek (Max 5MB)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-2"><label class="text-xs text-gray-400 uppercase font-bold">Bütçe</label><input type="text" id="budgetInput" class="w-full p-4 rounded-xl" placeholder="Örn: 500$" oninput="this.value = this.value.replace(/[^0-9$₺]/g, '')"></div>
+                    <div class="space-y-2 relative"><label class="text-xs text-gray-400 uppercase font-bold flex justify-between"><span>İndirim Kodu</span><span id="couponStatus" class="text-success hidden font-bold animate-pulse">KOD GEÇERLİ!</span></label><div class="flex gap-2"><input type="text" id="couponCode" class="w-full p-4 rounded-xl uppercase" placeholder="KODU GİRİN"><button type="button" onclick="checkCoupon()" class="px-6 rounded-xl border border-white/10 hover:bg-white/10 font-bold text-sm">UYGULA</button></div></div>
+                    <div class="space-y-2"><label class="text-xs text-gray-400 uppercase font-bold">Detaylar</label><textarea id="projDetails" class="w-full p-4 rounded-xl h-32" placeholder="Fikriniz..."></textarea></div>
+                    
+                    <button type="button" onclick="teklifiGonder()" class="w-full py-4 bg-ups-gradient text-white rounded-xl font-bold hover:scale-[1.02] transition-all shadow-lg">Teklifi Gönder</button>
+                    
+                    <div class="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-start gap-3">
+                        <i data-lucide="alert-triangle" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
+                        <div class="space-y-1">
+                            <h4 class="text-sm font-bold text-red-500">⚠️ ÖNEMLİ UYARI BABUŞ!</h4>
+                            <p class="text-xs text-red-400 leading-relaxed">
+                                Butona bastıktan sonra biraz bekle, sistem seni otomatik olarak <b>Sipariş Takip</b> sayfasına atacak.
+                                Takip kodunu sakın kaybetme! (Kaybedersen bize sorabilirsin).
+                            </p>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    AOS.init(); lucide.createIcons();
+
+    const SUPABASE_URL = "https://joityershajvkgxjaqqw.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpvaXR5ZXJzaGFqdmtneGphcXF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0Mzg2MzcsImV4cCI6MjA4NDAxNDYzN30.oM6UxzGtv7oHaAA2goOuSlLzpqXoHChAdIbTO_uNcbw";
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    let compressedImageBase64 = null;
+    let selectedFile = null; // Discord'a dosya atmak için tutuyoruz
+
+    // URL'den ürün çekme işlemleri (Senin kodun aynısı)
+    window.onload = function() {
+        const params = new URLSearchParams(window.location.search);
+        const product = params.get('product');
+        const price = params.get('price');
+        if(product) {
+            const select = document.getElementById('serviceSelect');
+            const opt = document.createElement('option');
+            opt.value = "Hazır Ürün: " + product;
+            opt.text = "📦 SATIN ALIM: " + product;
+            opt.selected = true;
+            select.add(opt, select.options[1]);
+            document.getElementById('projDetails').value = `Selam babuş, ben mağazadan şu ürünü almak istiyorum:\n\nÜrün Adı: ${product}\nFiyat: ${price}\n\nÖdeme için IBAN veya Papara bekliyorum.`;
+            if(price) document.getElementById('budgetInput').value = price;
+        }
+    };
+
+    function fileSelected(input) {
+        selectedFile = input.files[0];
+        if(selectedFile) {
+            document.getElementById('uploadPlaceholder').innerHTML = `<i data-lucide="check-circle" class="w-8 h-8 mx-auto text-green-500 mb-2"></i><p class="text-sm text-white font-bold">${selectedFile.name}</p>`;
+            lucide.createIcons();
+            const reader = new FileReader();
+            reader.readAsDataURL(selectedFile);
+            reader.onload = function(e) { compressedImageBase64 = e.target.result; };
+        }
+    }
+
+    async function teklifiGonder() {
+        const name = document.getElementById('custName').value;
+        const discord = document.getElementById('custDiscord').value;
+        const service = document.getElementById('serviceSelect').value;
+        const budget = document.getElementById('budgetInput').value;
+        const details = document.getElementById('projDetails').value;
+        const coupon = document.getElementById('couponCode').value.trim() || "Yok";
+        
+        // Rastgele Takip Kodu Oluştur
+        const sipNo = "UPS-" + Math.floor(10000 + Math.random() * 90000);
+
+        if(!name || !details || service === "Seçiniz...") { alert("Eksik bilgi babuş!"); return; }
+
+        try {
+            // 1. SUPABASE KAYIT (Doğru sütun isimleriyle)
+            const { error } = await supabaseClient.from('orders').insert([{ 
+                order_id: sipNo,
+                product_name: service,
+                customer_name: name,
+                price: budget || "Görüşülecek",
+                order_status: 'Beklemede',
+                discord_id: discord,
+                customer_note: details,
+                coupon: coupon,
+                percent: 0,
+                stage: 'Sipariş Alındı',
+                image_preview: compressedImageBase64 // Admin paneli için base64
+            }]);
+
+            if (error) throw error;
+
+            // 2. DISCORD WEBHOOK (Dosya ekliyoruz ki resim garanti gitsin)
+            const webhookURL = "https://discord.com/api/webhooks/1450155997841588437/N711ixE7mK4Yp3YTzF678aEIT-UPEDSB4U6Z7hA6UAwibuiobwwtLZY1hCr2OgxoUHec";
+            
+            const formData = new FormData();
+            const embedData = {
+                username: "Upsilon Sipariş",
+                embeds: [{
+                    title: "💰 YENİ SİPARİŞ!", color: 3066993,
+                    fields: [
+                        { name: "👤 Müşteri", value: name, inline: true },
+                        { name: "🆔 Discord", value: discord, inline: true },
+                        { name: "📦 Hizmet", value: service, inline: true },
+                        { name: "💵 Bütçe", value: budget || "Görüşülecek", inline: true },
+                        { name: "🆔 Takip No", value: sipNo },
+                        { name: "📝 Detaylar", value: details }
+                    ],
+                    footer: { text: "Upsilon Dev Studio • Otomatik Sistem" },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            formData.append('payload_json', JSON.stringify(embedData));
+            if (selectedFile) {
+                formData.append('file', selectedFile); // Resmi ek dosya yapıyoruz
+            }
+
+            await fetch(webhookURL, { method: 'POST', body: formData });
+            
+            confetti();
+            alert("Sipariş alındı babuş! Seni takip sayfasına atıyorum...");
+            
+            // 3. YÖNLENDİRME (Takip sayfasına postala)
+            window.location.href = `siparistakip.html?id=${sipNo}`;
+
+        } catch (err) {
+            alert("Hata çıktı babuş: " + err.message);
+        }
+    }
+</script>
+</body>
+</html>

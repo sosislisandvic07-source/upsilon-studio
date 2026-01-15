@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolyo | Upsilon Dev Studio</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'], },
+                    colors: { dark: '#050508', neonPurple: '#8B5CF6', neonPink: '#EC4899', neonBlue: '#6366F1' },
+                    backgroundImage: { 'ups-gradient': 'linear-gradient(to right, #6366F1, #8B5CF6, #EC4899)', }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050508; color: white; overflow-x: hidden; }
+        .glass { background: rgba(5, 5, 8, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        /* 3D TILT EFEKTİ - Sadece görsel olacak artık */
+        .project-card {
+            transition: transform 0.1s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .project-card:hover { z-index: 10; }
+        .card-content { transform: translateZ(20px); }
+        .card-glow {
+            position: absolute; inset: 0; border-radius: 1.5rem;
+            background: radial-gradient(circle at var(--x) var(--y), rgba(139, 92, 246, 0.4), transparent 40%);
+            opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 0;
+        }
+        .project-card:hover .card-glow { opacity: 1; }
+
+        /* Kategori Butonları */
+        .filter-btn.active { background: linear-gradient(to right, #6366F1, #EC4899); color: white; border-color: transparent; box-shadow: 0 0 20px rgba(99, 102, 241, 0.5); }
+   /* Aktif sayfa ışığı */
+.nav-active {
+    color: white !important;
+    position: relative;
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.8); /* Yazıya hafif parlama */
+}
+
+.nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 2px;
+    background: var(--ups-gradient, linear-gradient(to right, #6366F1, #8B5CF6, #EC4899));
+    box-shadow: 0 0 15px 2px rgba(139, 92, 246, 0.7); /* İşte o spot ışığı bu! */
+    border-radius: 20px;
+}
+   </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen relative">
+
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-neonBlue/10 rounded-full blur-[100px] animate-pulse"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-neonPink/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
+
+     <nav class="fixed w-full z-50 glass top-0 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <img src="logo.png" alt="Upsilon Logo" class="w-11 h-11 object-contain logo-glow group-hover:scale-110 transition-transform duration-500">
+            <div class="leading-tight">
+                <span class="block font-display font-bold text-lg tracking-wide text-white group-hover:text-neonPurple transition-colors">UPSILON</span>
+                <span class="block text-[10px] text-gray-500 font-medium tracking-[0.2em] group-hover:text-white transition-colors">DEV STUDIO</span>
+            </div>
+        </a>
+        
+        <div class="hidden md:flex gap-6 lg:gap-8 text-sm font-medium text-gray-400 items-center">
+            <a href="index.html" class="hover:text-white transition">Ana Sayfa</a>
+            <a href="portfolyo.html" class="nav-active">Portfolyo</a>
+            <a href="magaza.html" class="text-neonBlue hover:text-white font-bold transition-all flex items-center gap-1"><i data-lucide="shopping-bag" class="w-3 h-3"></i> Mağaza</a>
+            <a href="hizmetler.html" class="hover:text-white transition">Hizmetler</a>
+            <a href="fiyatlar.html" class="hover:text-white transition">Fiyatlar</a>
+            <a href="sss.html" class="hover:text-white transition-all">S.S.S</a>
+            <a href="iletisim.html" class="hover:text-white transition">İletişim</a>
+            <a href="siparistakip.html" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-neonBlue hover:text-white transition-all group">
+                <i data-lucide="search" class="w-3 h-3 group-hover:text-neonBlue transition-colors"></i> 
+                Sipariş Takip
+            </a>
+        </div>
+<a href="basvuru.html" class="text-neonPink hover:text-white transition-all flex items-center gap-1">
+                <i data-lucide="user-plus" class="w-3 h-3"></i> Başvuru
+            </a>
+        <a href="iletisim.html" class="hidden md:flex items-center gap-2 bg-ups-gradient px-6 py-2.5 rounded-full text-sm font-bold text-white shadow-lg shadow-neonPurple/20 hover:shadow-neonPurple/50 hover:scale-105 transition-all">
+            Sipariş Ver <i data-lucide="sparkles" class="w-3 h-3 text-white/80"></i>
+        </a>
+    </div>
+</nav>
+
+    <main class="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto w-full">
+        
+        <div class="text-center mb-20" data-aos="fade-down">
+            <span class="text-neonPurple font-mono text-xs font-bold tracking-[0.3em] uppercase mb-4 block">Referanslarımız</span>
+            <h1 class="text-5xl md:text-7xl font-display font-bold mb-6">İmzalarımız <br><span class="text-transparent bg-clip-text bg-ups-gradient">Eserlerimizdir.</span></h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">Roblox platformu dahilinde inşa ettiğimiz dünyalar, geliştirdiğimiz yazılımlar ve tasarladığımız grafiklerin tamamı; yüksek kalite standartlarımız ve özgün işçiliğimiz ile hayat bulmaktadır.</p>
+        </div>
+
+        <div class="flex justify-center gap-3 mb-16 flex-wrap" data-aos="fade-up">
+            <button onclick="filterProjects('all')" class="filter-btn active px-6 py-2.5 rounded-full border border-white/10 text-sm font-bold text-gray-400 hover:text-white transition-all">Tümü</button>
+            <button onclick="filterProjects('map')" class="filter-btn px-6 py-2.5 rounded-full border border-white/10 text-sm font-bold text-gray-400 hover:text-white transition-all">Harita & Build</button>
+            <button onclick="filterProjects('script')" class="filter-btn px-6 py-2.5 rounded-full border border-white/10 text-sm font-bold text-gray-400 hover:text-white transition-all">Yazılım (Script)</button>
+            <button onclick="filterProjects('gfx')" class="filter-btn px-6 py-2.5 rounded-full border border-white/10 text-sm font-bold text-gray-400 hover:text-white transition-all">GFX & Tasarım</button>
+        </div>
+
+        <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="project-card map group relative rounded-2xl bg-[#0F0F13] border border-white/5 overflow-hidden h-[400px]" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-glow"></div>
+                <img src="orman.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                
+                <div class="absolute bottom-0 left-0 p-8 w-full card-content">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="px-2 py-1 bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded text-[10px] font-bold uppercase">HARİTA</span>
+                        <span class="px-2 py-1 bg-white/10 text-white rounded text-[10px] font-bold">1 saat</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-display mb-2 group-hover:text-neonBlue transition-colors">Organik Atmosfer: Göl Kıyısı</h3>
+                    <p class="text-gray-400 text-sm">Yoğun bitki örtüsü ve detaylı çevre tasarımı. Işık, gölge ve su efektlerinin optimize edilerek oluşturulduğu yüksek detaylı doğa sahnesi.</p>
+                </div>
+            </div>
+
+            <div class="project-card script group relative rounded-2xl bg-[#0F0F13] border border-white/5 overflow-hidden h-[400px]" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-glow"></div>
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                
+                <div class="absolute bottom-0 left-0 p-8 w-full card-content">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="px-2 py-1 bg-pink-500/20 text-pink-400 border border-pink-500/30 rounded text-[10px] font-bold uppercase">SCRIPT</span>
+                        <span class="px-2 py-1 bg-white/10 text-white rounded text-[10px] font-bold">5 Gün</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-display mb-2 group-hover:text-neonPink transition-colors">Ultra Anti-Cheat</h3>
+                    <p class="text-gray-400 text-sm">Hilecilere göz açtırmayan, sunucu tarafında çalışan güçlü koruma kalkanı. Speed ve Fly koruması aktif.</p>
+                </div>
+            </div>
+
+            <div class="project-card gfx group relative rounded-2xl bg-[#0F0F13] border border-white/5 overflow-hidden h-[400px]" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-glow"></div>
+                <img src="zengin_nakarat.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                
+                <div class="absolute bottom-0 left-0 p-8 w-full card-content">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="px-2 py-1 bg-purple-500/20 text-purple-400 border border-purple-500/30 rounded text-[10px] font-bold uppercase">GFX</span>
+                        <span class="px-2 py-1 bg-white/10 text-white rounded text-[10px] font-bold">5 saat</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-display mb-2 group-hover:text-neonPurple transition-colors">Zamansız Otorite</h3>
+                    <p class="text-gray-400 text-sm">Klasik 930 Turbo ile stilize karakter tasarımının uyumu. Lüks ve retro estetiğin Roblox dünyasındaki yüksek çözünürlüklü, gerçekçi yorumu.</p>
+                </div>
+            </div>
+
+            <div class="project-card map group relative rounded-2xl bg-[#0F0F13] border border-white/5 overflow-hidden h-[400px]" data-aos="fade-up">
+                <div class="card-glow"></div>
+                <img src="map2.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-8 w-full card-content">
+                    <div class="flex items-center gap-2 mb-2"><span class="px-2 py-1 bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded text-[10px] font-bold uppercase">HARİTA</span></div>
+                    <h3 class="text-2xl font-bold font-display mb-2 group-hover:text-neonBlue transition-colors">Modern Atrium</h3>
+                    <p class="text-gray-400 text-sm">Dairesel mimari formların ahşap dokularla buluşması. Doğal gökyüzü ışığının, yapay iç mekan aydınlatmasıyla dengelendiği modern ve ferah bir iç mekan tasarımı.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-20 text-center" data-aos="fade-up">
+            <div class="p-[1px] rounded-2xl bg-ups-gradient inline-block">
+                <div class="bg-dark rounded-2xl p-8 max-w-2xl mx-auto relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-neonPurple/20 blur-[50px]"></div>
+                    <h3 class="text-2xl font-bold font-display mb-2">Kendi Projeni mi Yapıyorsun?</h3>
+                    <p class="text-gray-400 mb-6">Sıfırdan yaptırmak yerine hemen kullanabileceğin hazır haritalar, scriptler ve assetler mağazamızda seni bekliyor babuş.</p>
+                    <a href="magaza.html" class="inline-flex items-center gap-2 bg-white text-black px-8 py-3 rounded-xl font-bold hover:scale-105 transition shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                        <i data-lucide="shopping-bag" class="w-5 h-5"></i> Hazır Ürünleri İncele
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+<footer class="border-t border-white/5 bg-black/50 pt-16 pb-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <img src="logo.png" class="w-8 h-8 object-contain">
+                    <span class="font-display font-bold text-xl tracking-wide text-white">UPSILON</span>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
+                    Roblox evreninde hayal ettiğin dünyaları gerçeğe dönüştürüyoruz. Profesyonel building, scripting ve tasarım hizmetleri için doğru adrestesin.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-neonBlue hover:border-transparent transition-all"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-neonPurple transition-all"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-black transition-all"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white mb-6">Hızlı Erişim</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="index.html" class="hover:text-neonPurple transition-colors">Ana Sayfa</a></li>
+                    <li><a href="portfolyo.html" class="hover:text-neonPurple transition-colors">Portfolyo</a></li>
+                    <li><a href="magaza.html" class="hover:text-neonPurple transition-colors">Hazır Ürünler</a></li>
+                    <li><a href="fiyatlar.html" class="hover:text-neonPurple transition-colors">Fiyatlandırma</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white mb-6">Kurumsal</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="sss.html" class="hover:text-neonBlue transition-colors flex items-center gap-2"><i data-lucide="help-circle" class="w-3 h-3"></i> S.S.S (Merak Edilenler)</a></li>
+                    <li><a href="hakkimizda.html" class="hover:text-neonBlue transition-colors">Hakkımızda</a></li>
+                    <li><a href="iletisim.html" class="hover:text-neonBlue transition-colors">İletişim</a></li>
+                    <li><a href="sartlar.html" class="hover:text-neonBlue transition-colors">Hizmet Şartları</a></li>
+                    <li><a href="telif-haklari.html" class="hover:text-neonBlue transition-colors">Telif Hakları & İzinler</a></li>
+                    <li><a href="gizlilik-politikasi.html" class="hover:text-neonBlue transition-colors">Gizlilik Politikası</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-600 text-sm">© 2025 Upsilon Dev Studio. Tüm hakları saklıdır.</p>
+            <div class="flex items-center gap-2 opacity-50">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-xs text-gray-500 font-mono">SYSTEM: ONLINE</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init(); lucide.createIcons();
+
+        // --- 3D TILT EFEKTİ (Kartlar Mouse ile hareket etsin) ---
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Glow efekti pozisyonu
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+
+                // Tilt rotasyonu
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -5; // Max 5 derece
+                const rotateY = ((x - centerX) / centerX) * 5;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
+        // --- FİLTRELEME SİSTEMİ ---
+        function filterProjects(cat) {
+            // Butonları güncelle
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active', 'text-white'));
+            event.target.classList.add('active', 'text-white');
+
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                if(cat === 'all' || card.classList.contains(cat)) {
+                    card.style.display = 'block';
+                    setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.9)';
+                    setTimeout(() => card.style.display = 'none', 300);
+                }
+            });
+        }
+
+        // Modal JS kodları da tamamen silindi
+    </script>
+</body>
+</html>

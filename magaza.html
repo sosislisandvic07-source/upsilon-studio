@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mağaza | Upsilon Dev Studio</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'], },
+                    colors: { dark: '#050508', neonPurple: '#8B5CF6', neonPink: '#EC4899', neonBlue: '#6366F1' },
+                    backgroundImage: { 'ups-gradient': 'linear-gradient(to right, #6366F1, #8B5CF6, #EC4899)', }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050508; color: white; overflow-x: hidden; }
+        .glass { background: rgba(5, 5, 8, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .filter-btn.active { background: white; color: black; border-color: white; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <nav class="fixed w-full z-50 glass top-0 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="logo.png" alt="Upsilon Logo" class="w-11 h-11 object-contain logo-glow group-hover:scale-110 transition-transform duration-500">
+                <div class="leading-tight">
+                    <span class="block font-display font-bold text-lg tracking-wide text-white group-hover:text-neonPurple transition-colors">UPSILON</span>
+                    <span class="block text-[10px] text-gray-500 font-medium tracking-[0.2em] group-hover:text-white transition-colors">DEV STUDIO</span>
+                </div>
+            </a>
+            
+            <div class="hidden md:flex gap-6 lg:gap-8 text-sm font-medium text-gray-400 items-center">
+                <a href="index.html" class="hover:text-white transition">Ana Sayfa</a>
+                <a href="portfolyo.html" class="hover:text-white transition">Portfolyo</a>
+                <a href="magaza.html" class="text-neonBlue hover:text-white font-bold transition-all flex items-center gap-1"><i data-lucide="shopping-bag" class="w-3 h-3"></i> Mağaza</a>
+                <a href="hizmetler.html" class="hover:text-white transition">Hizmetler</a>
+                <a href="fiyatlar.html" class="hover:text-white transition">Fiyatlar</a>
+                <a href="sss.html" class="hover:text-white transition-all">S.S.S</a>
+                <a href="iletisim.html" class="hover:text-white transition">İletişim</a>
+                <a href="siparistakip.html" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-neonBlue hover:text-white transition-all group">
+                    <i data-lucide="search" class="w-3 h-3 group-hover:text-neonBlue transition-colors"></i> 
+                    Sipariş Takip
+                </a>
+            </div>
+            <a href="basvuru.html" class="text-neonPink hover:text-white transition-all flex items-center gap-1">
+                <i data-lucide="user-plus" class="w-3 h-3"></i> Başvuru
+            </a>
+            <a href="iletisim.html" class="hidden md:flex items-center gap-2 bg-ups-gradient px-6 py-2.5 rounded-full text-sm font-bold text-white shadow-lg shadow-neonPurple/20 hover:shadow-neonPurple/50 hover:scale-105 transition-all">
+                Sipariş Ver <i data-lucide="sparkles" class="w-3 h-3 text-white/80"></i>
+            </a>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto w-full">
+        
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-4">Hazır <span class="text-transparent bg-clip-text bg-ups-gradient">Sistemler & Haritalar</span></h1>
+            <p class="text-gray-400 max-w-2xl mx-auto">Geliştirme süreçlerinde zaman kaybını önlemek isteyen kullanıcılarımız için hazırladığımız, anında teslimat ve yüksek uyumluluk özelliklerine sahip hazır çözümlerimiz hizmetinizdedir. Ürünlerimizi detaylıca analiz edebilir, projenize en uygun varlığı güvenle temin edebilirsiniz.</p>
+        </div>
+
+        <div class="flex justify-center gap-3 mb-12 flex-wrap">
+            <button onclick="filterProducts('all')" class="filter-btn active px-5 py-2 rounded-full border border-white/10 text-sm font-bold text-gray-400 hover:text-white transition-all">Tümü</button>
+            <button onclick="filterProducts('map')" class="filter-btn px-5 py-2 rounded-full border border-white/10 text-sm font-bold text-gray-400 hover:text-white transition-all">Haritalar</button>
+            <button onclick="filterProducts('script')" class="filter-btn px-5 py-2 rounded-full border border-white/10 text-sm font-bold text-gray-400 hover:text-white transition-all">Yazılımlar</button>
+            <button onclick="filterProducts('mesh')" class="filter-btn px-5 py-2 rounded-full border border-white/10 text-sm font-bold text-gray-400 hover:text-white transition-all">Mesh Paketleri</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="product-card map bg-[#0F0F13] border border-white/5 rounded-2xl overflow-hidden group hover:border-neonBlue/50 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="map1.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-xs font-bold text-neonBlue">HARİTA</div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="text-xl font-bold font-display text-white mb-1">Modern Lobi</h3>
+                            <p class="text-xs text-gray-500">Satıcı: Upsilon Builder</p>
+                        </div>
+                        <span class="text-lg font-bold text-white">250₺</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Düşük sistemler için optimize edilmiş, şık ve modern giriş lobisi.</p>
+                    <div class="flex gap-3">
+                        <a href="ilan-detay.html" class="flex-1 py-2.5 rounded-lg border border-white/10 text-sm font-bold text-center hover:bg-white hover:text-black transition">Detayları Gör</a>
+                        <a href="iletisim.html?product=Modern%20Lobi&price=250₺" class="flex-1 py-2.5 rounded-lg bg-neonBlue text-white text-sm font-bold text-center hover:bg-blue-600 transition">Sipariş Et</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card map bg-[#0F0F13] border border-white/5 rounded-2xl overflow-hidden group hover:border-neonPurple/50 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="maps.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-xs font-bold text-neonPurple">HARİTA</div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="text-xl font-bold font-display text-white mb-1">Orta Çağ Temalı Kale Lobisi</h3>
+                            <p class="text-xs text-gray-500">Satıcı: Upsilon Builder</p>
+                        </div>
+                        <span class="text-lg font-bold text-white">200₺</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Upsilon Dev Studio tarafından tamamen F3X ile inşa edilmiş, ışıklandırması kaliteli ve yüksek performanslı lobi tasarımıdır.</p>
+                    <div class="flex gap-3">
+                        <a href="ilan-detay2.html" class="flex-1 py-2.5 rounded-lg border border-white/10 text-sm font-bold text-center hover:bg-white hover:text-black transition">Detayları Gör</a>
+                        <a href="iletisim.html?product=Orta Çağ Temalı%20Lobi&price=200₺" class="flex-1 py-2.5 rounded-lg bg-neonPurple text-white text-sm font-bold text-center hover:bg-purple-600 transition">Sipariş Et</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card script bg-[#0F0F13] border border-white/5 rounded-2xl overflow-hidden group hover:border-neonPink/50 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="yenilan.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-xs font-bold text-neonPink">SCRIPT</div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="text-xl font-bold font-display text-white mb-1">Yakında!</h3>
+                            <p class="text-xs text-gray-500">Satıcı: Upsilon Team</p>
+                        </div>
+                        <span class="text-lg font-bold text-white">‎ ₺</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Yakında Script İlanı Gelecektir.</p>
+                    <div class="flex gap-3">
+                        <a href="ilan-detay3.html" class="flex-1 py-2.5 rounded-lg border border-white/10 text-sm font-bold text-center hover:bg-white hover:text-black transition">Detayları Gör</a>
+                        <a href="iletisim.html?product=boş%20ilan&price=‎ ₺" class="flex-1 py-2.5 rounded-lg bg-neonPink text-white text-sm font-bold text-center hover:bg-pink-600 transition">Sipariş Et</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card map bg-[#0F0F13] border border-white/5 rounded-2xl overflow-hidden group hover:border-green-500/50 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="mapss3.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-xs font-bold text-green-500">HARİTA</div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="text-xl font-bold font-display text-white mb-1">SCP - Containment Breach</h3>
+                            <p class="text-xs text-gray-500">Satıcı: Upsilon Team</p>
+                        </div>
+                        <span class="text-lg font-bold text-white">2000₺</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Upsilon Dev Studio tarafından tamamen F3X ile inşa edilen; ofis, koridor ve dış sahaları kapsayan yüksek kaliteli tesis tasarımıdır.</p>
+                    <div class="flex gap-3">
+                        <a href="ilan-detay4.html" class="flex-1 py-2.5 rounded-lg border border-white/10 text-sm font-bold text-center hover:bg-white hover:text-black transition">Detayları Gör</a>
+                        <a href="iletisim.html?product=SCP - Containment%20Breach&price=2000₺" class="flex-1 py-2.5 rounded-lg bg-green-600 text-white text-sm font-bold text-center hover:bg-green-700 transition">Sipariş Et</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card map bg-[#0F0F13] border border-white/5 rounded-2xl overflow-hidden group hover:border-yellow-500/50 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="mak.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-xs font-bold text-yellow-500">HARİTA</div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="text-xl font-bold font-display text-white mb-1">SCP - Kapsamlı Yeraltı Tesis Haritası (F3X)</h3>
+                            <p class="text-xs text-gray-500">Satıcı: Upsilon Team</p>
+                        </div>
+                        <span class="text-lg font-bold text-white">1750₺</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Upsilon Dev Studio tarafından tamamen F3X ile inşa edilmiş, devasa ölçekli ve yüksek performanslı tesis haritasıdır..</p>
+                    <div class="flex gap-3">
+                        <a href="ilan-detay5.html" class="flex-1 py-2.5 rounded-lg border border-white/10 text-sm font-bold text-center hover:bg-white hover:text-black transition">Detayları Gör</a>
+                        <a href="iletisim.html?product=SCP - Kapsamlı Yeraltı%20Tesis Haritası (F3X)&price=1750₺" class="flex-1 py-2.5 rounded-lg bg-yellow-600 text-white text-sm font-bold text-center hover:bg-yellow-700 transition">Sipariş Et</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card script bg-[#0F0F13] border border-white/5 rounded-2xl overflow-hidden group hover:border-red-500/50 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="yenilan.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-xs font-bold text-red-500">SCRIPT</div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="text-xl font-bold font-display text-white mb-1">Yakında!</h3>
+                            <p class="text-xs text-gray-500">Satıcı: Upsilon Team</p>
+                        </div>
+                        <span class="text-lg font-bold text-white">‎ ₺</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Yakında Script İlanı Gelecektir.</p>
+                    <div class="flex gap-3">
+                        <a href="ilan-detay6.html" class="flex-1 py-2.5 rounded-lg border border-white/10 text-sm font-bold text-center hover:bg-white hover:text-black transition">Detayları Gör</a>
+                        <a href="iletisim.html?product=boş%20ilan&price=‎ ₺" class="flex-1 py-2.5 rounded-lg bg-red-600 text-white text-sm font-bold text-center hover:bg-red-700 transition">Sipariş Et</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card map bg-[#0F0F13] border border-white/5 rounded-2xl overflow-hidden group hover:border-green-400/50 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="mup.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-xs font-bold text-green-400">HARİTA</div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="text-xl font-bold font-display text-white mb-1">SCP-Klasik Tesis Haritası</h3>
+                            <p class="text-xs text-gray-500">Satıcı: Builder</p>
+                        </div>
+                        <span class="text-lg font-bold text-white">1200₺</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Upsilon Dev Studio'dan, F3X ile yapılmış, eski sürüm olması nedeniyle bazı hatalar içerebilen ancak atmosferi sağlam ve ekonomik tesis haritasıdır.</p>
+                    <div class="flex gap-3">
+                        <a href="ilan-detay7.html" class="flex-1 py-2.5 rounded-lg border border-white/10 text-sm font-bold text-center hover:bg-white hover:text-black transition">Detayları Gör</a>
+                        <a href="iletisim.html?product=SCP-Klasik Tesis%20Haritası&price=1200₺" class="flex-1 py-2.5 rounded-lg bg-green-500 text-white text-sm font-bold text-center hover:bg-green-600 transition">Sipariş Et</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card mesh bg-[#0F0F13] border border-white/5 rounded-2xl overflow-hidden group hover:border-orange-500/50 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="yenilan.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-xs font-bold text-orange-500">Mesh</div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="text-xl font-bold font-display text-white mb-1">Yakında!</h3>
+                            <p class="text-xs text-gray-500">Satıcı: Upsilon Team</p>
+                        </div>
+                        <span class="text-lg font-bold text-white">‎ ₺</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Yakında Mesh paketimiz gelecektir.</p>
+                    <div class="flex gap-3">
+                        <a href="ilan-detay8.html" class="flex-1 py-2.5 rounded-lg border border-white/10 text-sm font-bold text-center hover:bg-white hover:text-black transition">Detayları Gör</a>
+                        <a href="iletisim.html?product=boş%20ilan&price=‎ ₺" class="flex-1 py-2.5 rounded-lg bg-orange-600 text-white text-sm font-bold text-center hover:bg-orange-700 transition">Sipariş Et</a>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="product-card map bg-[#0F0F13] border border-white/5 rounded-2xl overflow-hidden group hover:border-pink-500/50 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="mups3.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-xs font-bold text-pink-500">HARİTA</div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="text-xl font-bold font-display text-white mb-1">Low-Poly Renkli Harita</h3>
+                            <p class="text-xs text-gray-500">Satıcı: Builder</p>
+                        </div>
+                        <span class="text-lg font-bold text-white">575₺</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Upsilon Dev Studio tarafından yeni hazırlanan, tamamen hatasız, yüksek performanslı ve modern görünümlü profesyonel low-poly haritadır.</p>
+                    <div class="flex gap-3">
+                        <a href="ilan-detay9.html" class="flex-1 py-2.5 rounded-lg border border-white/10 text-sm font-bold text-center hover:bg-white hover:text-black transition">Detayları Gör</a>
+                        <a href="iletisim.html?product=Low-Poly Renkli%20Map&Harita=575₺" class="flex-1 py-2.5 rounded-lg bg-pink-600 text-white text-sm font-bold text-center hover:bg-pink-700 transition">Sipariş Et</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card script bg-[#0F0F13] border border-white/5 rounded-2xl overflow-hidden group hover:border-blue-500/50 transition-all duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="yenilan.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-xs font-bold text-blue-500">SCRIPT</div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="text-xl font-bold font-display text-white mb-1">Yakında!</h3>
+                            <p class="text-xs text-gray-500">Satıcı: Upsilon Team</p>
+                        </div>
+                        <span class="text-lg font-bold text-white">‎ ₺</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Yakında Script İlanı Gelecektir. </p>
+                    <div class="flex gap-3">
+                        <a href="ilan-detay10.html" class="flex-1 py-2.5 rounded-lg border border-white/10 text-sm font-bold text-center hover:bg-white hover:text-black transition">Detayları Gör</a>
+                        <a href="iletisim.html?product=boş ilan&price=‎ ₺" class="flex-1 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-bold text-center hover:bg-blue-700 transition">Sipariş Et</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="border-t border-white/5 bg-black/50 pt-16 pb-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="logo.png" class="w-8 h-8 object-contain">
+                        <span class="font-display font-bold text-xl tracking-wide text-white">UPSILON</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
+                        Roblox evreninde hayal ettiğin dünyaları gerçeğe dönüştürüyoruz. Profesyonel building, scripting ve tasarım hizmetleri için doğru adrestesin.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-neonBlue hover:border-transparent transition-all"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-neonPurple transition-all"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-black transition-all"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6">Hızlı Erişim</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-neonPurple transition-colors">Ana Sayfa</a></li>
+                        <li><a href="portfolyo.html" class="hover:text-neonPurple transition-colors">Portfolyo</a></li>
+                        <li><a href="magaza.html" class="hover:text-neonPurple transition-colors">Hazır Ürünler</a></li>
+                        <li><a href="fiyatlar.html" class="hover:text-neonPurple transition-colors">Fiyatlandırma</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6">Kurumsal</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="sss.html" class="hover:text-neonBlue transition-colors flex items-center gap-2"><i data-lucide="help-circle" class="w-3 h-3"></i> S.S.S (Merak Edilenler)</a></li>
+                        <li><a href="hakkimizda.html" class="hover:text-neonBlue transition-colors">Hakkımızda</a></li>
+                        <li><a href="iletisim.html" class="hover:text-neonBlue transition-colors">İletişim</a></li>
+                        <li><a href="sartlar.html" class="hover:text-neonBlue transition-colors">Hizmet Şartları</a></li>
+                        <li><a href="telif-haklari.html" class="hover:text-neonBlue transition-colors">Telif Hakları & İzinler</a></li>
+                        <li><a href="gizlilik-politikasi.html" class="hover:text-neonBlue transition-colors">Gizlilik Politikası</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-600 text-sm">© 2025 Upsilon Dev Studio. Tüm hakları saklıdır.</p>
+                <div class="flex items-center gap-2 opacity-50">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-xs text-gray-500 font-mono">SYSTEM: ONLINE</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function filterProducts(cat) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active', 'bg-white', 'text-black'));
+            event.target.classList.add('active', 'bg-white', 'text-black');
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if(cat === 'all' || card.classList.contains(cat)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

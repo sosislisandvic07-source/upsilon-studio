@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.S.S | Upsilon Dev Studio</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'], },
+                    colors: { dark: '#050508', neonPurple: '#8B5CF6', neonPink: '#EC4899', neonBlue: '#6366F1', neonGreen: '#10B981' },
+                    backgroundImage: { 'ups-gradient': 'linear-gradient(to right, #6366F1, #8B5CF6, #EC4899)', }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050508; color: white; overflow-x: hidden; }
+        .glass { background: rgba(5, 5, 8, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        /* Akordiyon Stili */
+        details > summary { list-style: none; cursor: pointer; transition: all 0.3s; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary { background: rgba(255,255,255,0.05); color: #8B5CF6; }
+        details[open] .arrow { transform: rotate(180deg); color: #8B5CF6; }
+        details { transition: all 0.3s ease; }
+        /* Aktif sayfa ışığı */
+.nav-active {
+    color: white !important;
+    position: relative;
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.8); /* Yazıya hafif parlama */
+}
+
+.nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 2px;
+    background: var(--ups-gradient, linear-gradient(to right, #6366F1, #8B5CF6, #EC4899));
+    box-shadow: 0 0 15px 2px rgba(139, 92, 246, 0.7); /* İşte o spot ışığı bu! */
+    border-radius: 20px;
+}
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+          <nav class="fixed w-full z-50 glass top-0 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <img src="logo.png" alt="Upsilon Logo" class="w-11 h-11 object-contain logo-glow group-hover:scale-110 transition-transform duration-500">
+            <div class="leading-tight">
+                <span class="block font-display font-bold text-lg tracking-wide text-white group-hover:text-neonPurple transition-colors">UPSILON</span>
+                <span class="block text-[10px] text-gray-500 font-medium tracking-[0.2em] group-hover:text-white transition-colors">DEV STUDIO</span>
+            </div>
+        </a>
+        
+        <div class="hidden md:flex gap-6 lg:gap-8 text-sm font-medium text-gray-400 items-center">
+            <a href="index.html" class="hover:text-white transition">Ana Sayfa</a>
+            <a href="portfolyo.html" class="hover:text-white transition">Portfolyo</a>
+            <a href="magaza.html" class="text-neonBlue hover:text-white font-bold transition-all flex items-center gap-1"><i data-lucide="shopping-bag" class="w-3 h-3"></i> Mağaza</a>
+            <a href="hizmetler.html" class="hover:text-white transition">Hizmetler</a>
+            <a href="fiyatlar.html" class="hover:text-white transition">Fiyatlar</a>
+            <a href="sss.html" class="nav-active">S.S.S</a>
+            <a href="iletisim.html" class="hover:text-white transition">İletişim</a>
+            <a href="siparistakip.html" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-neonBlue hover:text-white transition-all group">
+                <i data-lucide="search" class="w-3 h-3 group-hover:text-neonBlue transition-colors"></i> 
+                Sipariş Takip
+            </a>
+        </div>
+<a href="basvuru.html" class="text-neonPink hover:text-white transition-all flex items-center gap-1">
+                <i data-lucide="user-plus" class="w-3 h-3"></i> Başvuru
+            </a>
+        <a href="iletisim.html" class="hidden md:flex items-center gap-2 bg-ups-gradient px-6 py-2.5 rounded-full text-sm font-bold text-white shadow-lg shadow-neonPurple/20 hover:shadow-neonPurple/50 hover:scale-105 transition-all">
+            Sipariş Ver <i data-lucide="sparkles" class="w-3 h-3 text-white/80"></i>
+        </a>
+    </div>
+</nav>
+
+    <main class="pt-32 pb-20 px-6 max-w-4xl mx-auto">
+        
+        <div class="text-center mb-16">
+            <h1 class="font-display font-bold text-4xl md:text-5xl mb-4">Aklına Takılanlar <span class="text-transparent bg-clip-text bg-ups-gradient">(S.S.S)</span></h1>
+            <p class="text-gray-400">Merak ettiğiniz tüm konular ve teknik detaylar için kapsamlı soru kütüphanemizi inceleyebilirsiniz.
+        </div>
+
+        <div class="space-y-4">
+
+            <details class="group bg-white/5 border border-neonGreen/30 rounded-2xl overflow-hidden" open>
+                <summary class="flex justify-between items-center p-6 font-bold text-lg hover:bg-white/5 text-neonGreen">
+                    <span class="flex items-center gap-2"><i data-lucide="rocket" class="w-5 h-5"></i> Yeni oyun yapıyorum, indirim yapar mısınız?</span>
+                    <i data-lucide="chevron-down" class="arrow w-5 h-5 transition-transform duration-300"></i>
+                </summary>
+                <div class="px-6 pb-6 pt-2 text-gray-300 leading-relaxed border-t border-white/5">
+                    <p class="mb-4">Sektöre yeni adım atan geliştiriciler ve bağımsız oyun stüdyoları için hazırladığımız <strong>Startup Paketi<strong>  ile projelerinize güç katıyoruz. Mimari tasarım (map) ve yazılım (script) hizmetlerimizi kapsayan bu program dahilinde, girişimlerimize %20’ye varan maliyet avantajı sağlıyoruz. Upsilon Dev Studio olarak, ekosistemin gelişimine katkıda bulunmayı kurumsal sorumluluğumuz olarak görüyoruz.
+                    
+                    <a href="fiyatlar.html?kampanya=startup" class="inline-flex items-center gap-2 px-6 py-3 bg-neonGreen text-black font-bold rounded-xl hover:bg-green-400 transition-colors shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                        🚀 Startup Kampanyasını Gör
+                    </a>
+                </div>
+            </details>
+
+            <div class="py-4 text-xs font-bold text-gray-500 uppercase tracking-widest border-b border-white/10 mb-4">Ödeme ve Teslimat</div>
+
+            <details class="group bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+                <summary class="flex justify-between items-center p-6 font-bold text-lg hover:bg-white/5">
+                    Ödeme yöntemleri neler?
+                    <i data-lucide="chevron-down" class="arrow w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                </summary>
+                <div class="px-6 pb-6 text-gray-400 leading-relaxed">
+                    Upsilon Dev Studio olarak işlemlerimizi şeffaflık ve tam güvenlik prensibiyle yürütüyoruz. Kullanıcılarımıza; ItemSatış (Önerilen - Güvenli İşlem Merkezi), Havale/EFT ve IBAN üzerinden ödeme imkanı sunmaktayız. Düşük bütçeli işlemler için Discord Nitro, belirli limitler dahilinde ise Robux (Hediye Kartı) seçenekleri mevcuttur.
+
+Kurumsal işleyişimiz gereği, projenin başlatılması için belirlenen tutarın (kapora) tahsil edilmesi ve işlem sonrasında dekont paylaşımı zorunludur. Güvenlik ve referans teyidi için Discord platformu üzerindeki yüzlerce başarılı proje kaydımızı inceleyebilirsiniz.
+                </div>
+            </details>
+
+            <details class="group bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+                <summary class="flex justify-between items-center p-6 font-bold text-lg hover:bg-white/5">
+                    Robux ile ödeme yapabilir miyim?
+                    <i data-lucide="chevron-down" class="arrow w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                </summary>
+                <div class="px-6 pb-6 text-gray-400 leading-relaxed">
+                    Nakit önceliğimizdir. Ancak zor durumda kalırsan Robux kabul edebiliriz fakat Roblox'un kestiği %30 pazar yeri vergisini ve bekleme süresini karşılaman gerekir. Bu yüzden fiyat biraz artabilir.
+                </div>
+            </details>
+
+            <details class="group bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+                <summary class="flex justify-between items-center p-6 font-bold text-lg hover:bg-white/5">
+                    Ürünü ne zaman teslim alırım?
+                    <i data-lucide="chevron-down" class="arrow w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                </summary>
+                <div class="px-6 pb-6 text-gray-400 leading-relaxed">
+                    <ul>
+                        <li class="mb-2">⚡ <strong>Hazır Ürünler:</strong> Ödemeyi attığın saniye dosya linki sana iletilir.</li>
+                        <li>🛠️ <strong>Özel Siparişler:</strong> Projenin büyüklüğüne göre 3 gün ile 14 gün arasında değişir. Sana en başta net tarih veririz.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <div class="py-4 text-xs font-bold text-gray-500 uppercase tracking-widest border-b border-white/10 mb-4 mt-8">Teknik Detaylar</div>
+
+            <details class="group bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+                <summary class="flex justify-between items-center p-6 font-bold text-lg hover:bg-white/5">
+                    Haritalar kasma (lag) yapar mı?
+                    <i data-lucide="chevron-down" class="arrow w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                </summary>
+                <div class="px-6 pb-6 text-gray-400 leading-relaxed">
+                    Hayır babuş, bizim olayımız bu. Gereksiz part sayısını azaltıyor, Mesh kullanıyor ve dokuları optimize ediyoruz. Mobil oyuncular bile yağ gibi oynar.
+                </div>
+            </details>
+
+            <details class="group bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+                <summary class="flex justify-between items-center p-6 font-bold text-lg hover:bg-white/5">
+                    Dosyayı nasıl açacağım? (.rbxl / .rbxm nedir?)
+                    <i data-lucide="chevron-down" class="arrow w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                </summary>
+                <div class="px-6 pb-6 text-gray-400 leading-relaxed">
+                    Sana genelde <strong>.rbxl</strong> dosyası atarız. Bu direkt Roblox Studio proje dosyasıdır. Çift tıklarsın, açılır, kullanmaya başlarsın. Kurulum derdi yok.
+                </div>
+            </details>
+
+            <details class="group bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+                <summary class="flex justify-between items-center p-6 font-bold text-lg hover:bg-white/5">
+                    Map veya Scriptler virüslü mü? (Backdoor)
+                    <i data-lucide="chevron-down" class="arrow w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                </summary>
+                <div class="px-6 pb-6 text-gray-400 leading-relaxed">
+                    Kesinlikle hayır. Upsilon Dev Studio olarak "Free Model" kullanmayız, her şeyi sıfırdan yaparız. İçinde gizli script, virüs veya backdoor barındırmaz. %100 Temiz kod garantisi.
+                </div>
+            </details>
+
+            <div class="py-4 text-xs font-bold text-gray-500 uppercase tracking-widest border-b border-white/10 mb-4 mt-8">Haklar ve Destek</div>
+
+            <details class="group bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+                <summary class="flex justify-between items-center p-6 font-bold text-lg hover:bg-white/5">
+                    Satın aldıktan sonra haritayı değiştirebilir miyim?
+                    <i data-lucide="chevron-down" class="arrow w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                </summary>
+                <div class="px-6 pb-6 text-gray-400 leading-relaxed">
+                    Tabii ki! Dosya tamamen senin oluyor. Rengini değiştir, bina ekle, yık dök... Keyfin nasıl isterse öyle kullanabilirsin.
+                </div>
+            </details>
+
+            <details class="group bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+                <summary class="flex justify-between items-center p-6 font-bold text-lg hover:bg-white/5">
+                    Ürünü arkadaşıma satabilir miyim?
+                    <i data-lucide="chevron-down" class="arrow w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                </summary>
+                <div class="px-6 pb-6 text-gray-400 leading-relaxed text-red-400">
+                    Hayır, buna izin verilmez. Satın aldığın ürün lisansı "Kişisel Kullanım" içindir. Başkasına satmak, bedava dağıtmak veya sızdırmak yasaktır. Tespiti halinde DMCA (Telif) atılır.
+                </div>
+            </details>
+
+            <details class="group bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+                <summary class="flex justify-between items-center p-6 font-bold text-lg hover:bg-white/5">
+                    Beğenmezsem iade var mı?
+                    <i data-lucide="chevron-down" class="arrow w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                </summary>
+                <div class="px-6 pb-6 text-gray-400 leading-relaxed">
+                    Dijital ürünlerde (dosya teslimi yapıldığı için) iade maalesef mümkün değil. Ancak özel siparişlerde beğenmediğin yer olursa ücretsiz revize (düzenleme) hakkın var. Seni mağdur etmeyiz babuş.
+                </div>
+            </details>
+
+            <details class="group bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+                <summary class="flex justify-between items-center p-6 font-bold text-lg hover:bg-white/5">
+                    Destek veriyor musunuz?
+                    <i data-lucide="chevron-down" class="arrow w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                </summary>
+                <div class="px-6 pb-6 text-gray-400 leading-relaxed">
+                    Evet, satın alımdan sonra 14 gün boyunca teknik destek veriyoruz. Bir script çalışmazsa veya map'te bug bulursan Discord'dan yaz, anında çözeriz.
+                </div>
+            </details>
+
+            <details class="group bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+                <summary class="flex justify-between items-center p-6 font-bold text-lg hover:bg-white/5">
+                    Toplu alımda indirim olur mu?
+                    <i data-lucide="chevron-down" class="arrow w-5 h-5 text-gray-500 transition-transform duration-300"></i>
+                </summary>
+                <div class="px-6 pb-6 text-gray-400 leading-relaxed">
+                    Eğer hem Map, hem Script hem de UI tasarımı gibi "Full Paket" alacaksan sağlam bir güzellik yaparız. İletişime geçmen yeterli.
+                </div>
+            </details>
+
+        </div>
+
+        <div class="mt-16 text-center p-8 rounded-2xl bg-ups-gradient/5 border border-white/10 relative overflow-hidden">
+            <div class="absolute inset-0 bg-ups-gradient opacity-10 blur-3xl"></div>
+            <div class="relative z-10">
+                <h3 class="text-2xl font-bold text-white mb-2">Başka sorun mu var Babuş?</h3>
+                <p class="text-gray-400 mb-6">Burada cevabını bulamadıysan direkt bize yaz, anında dönelim.</p>
+                <a href="iletisim.html" class="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-white text-black font-bold hover:scale-105 transition-transform">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i> Bize Ulaş
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="border-t border-white/5 bg-black/50 pt-16 pb-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <img src="logo.png" class="w-8 h-8 object-contain">
+                    <span class="font-display font-bold text-xl tracking-wide text-white">UPSILON</span>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
+                    Roblox evreninde hayal ettiğin dünyaları gerçeğe dönüştürüyoruz. Profesyonel building, scripting ve tasarım hizmetleri için doğru adrestesin.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-neonBlue hover:border-transparent transition-all"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-neonPurple transition-all"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-black transition-all"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                </div>
+                
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white mb-6">Hızlı Erişim</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="index.html" class="hover:text-neonPurple transition-colors">Ana Sayfa</a></li>
+                    <li><a href="portfolyo.html" class="hover:text-neonPurple transition-colors">Portfolyo</a></li>
+                    <li><a href="magaza.html" class="hover:text-neonPurple transition-colors">Hazır Ürünler</a></li>
+                    <li><a href="fiyatlar.html" class="hover:text-neonPurple transition-colors">Fiyatlandırma</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white mb-6">Kurumsal</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="sss.html" class="hover:text-neonBlue transition-colors flex items-center gap-2"><i data-lucide="help-circle" class="w-3 h-3"></i> S.S.S (Merak Edilenler)</a></li>
+                    <li><a href="hakkimizda.html" class="hover:text-neonBlue transition-colors">Hakkımızda</a></li>
+                    <li><a href="iletisim.html" class="hover:text-neonBlue transition-colors">İletişim</a></li>
+                    <li><a href="sartlar.html" class="hover:text-neonBlue transition-colors">Hizmet Şartları</a></li>
+                    <li><a href="telif-haklari.html" class="hover:text-neonBlue transition-colors">Telif Hakları & İzinler</a></li>
+                    <li><a href="gizlilik-politikasi.html" class="hover:text-neonBlue transition-colors">Gizlilik Politikası</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-600 text-sm">© 2025 Upsilon Dev Studio. Tüm hakları saklıdır.</p>
+            <div class="flex items-center gap-2 opacity-50">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-xs text-gray-500 font-mono">SYSTEM: ONLINE</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

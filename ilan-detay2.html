@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orta Çağ Temalı Kale Lobisi | Upsilon Dev Studio</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'], },
+                    colors: { dark: '#050508', neonPurple: '#8B5CF6', neonPink: '#EC4899', neonBlue: '#6366F1' },
+                    backgroundImage: { 'ups-gradient': 'linear-gradient(to right, #6366F1, #8B5CF6, #EC4899)', }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050508; color: white; overflow-x: hidden; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .neon-box { box-shadow: 0 0 20px rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); }
+        
+        /* Galeri Efektleri */
+        .thumb { opacity: 0.5; transition: all 0.3s; border: 2px solid transparent; }
+        .thumb.active { opacity: 1; border-color: #8B5CF6; transform: scale(1.05); }
+        .nav-btn { background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); transition: all 0.3s; opacity: 0; }
+        .gallery-container:hover .nav-btn { opacity: 1; }
+        .nav-btn:hover { background: #8B5CF6; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen relative">
+
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-neonPurple/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-neonBlue/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    <nav class="fixed w-full z-50 glass-panel top-0 transition-all duration-300 border-b border-white/5 bg-[#050508]/80">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="logo.png" alt="Upsilon Logo" class="w-11 h-11 object-contain logo-glow group-hover:scale-110 transition-transform duration-500">
+                <div class="leading-tight">
+                    <span class="block font-display font-bold text-lg tracking-wide text-white group-hover:text-neonPurple transition-colors">UPSILON</span>
+                    <span class="block text-[10px] text-gray-500 font-medium tracking-[0.2em] group-hover:text-white transition-colors">DEV STUDIO</span>
+                </div>
+            </a>
+            
+            <div class="hidden md:flex gap-6 lg:gap-8 text-sm font-medium text-gray-400 items-center">
+                <a href="magaza.html" class="hover:text-white transition flex items-center gap-2">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Mağazaya Dön
+                </a>
+            </div>
+            
+            <a href="iletisim.html" class="hidden md:flex items-center gap-2 bg-ups-gradient px-6 py-2.5 rounded-full text-sm font-bold text-white shadow-lg shadow-neonPurple/20 hover:shadow-neonPurple/50 hover:scale-105 transition-all">
+                Sipariş Ver <i data-lucide="sparkles" class="w-3 h-3 text-white/80"></i>
+            </a>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto w-full">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <div class="lg:col-span-7" data-aos="fade-right">
+                
+                <div class="gallery-container relative rounded-2xl overflow-hidden border border-white/10 group mb-4 shadow-2xl shadow-neonPurple/10 h-[400px] md:h-[500px] bg-[#0F0F13]">
+                    
+                    <div class="absolute top-4 left-4 z-10">
+                        <span class="px-3 py-1 bg-black/60 backdrop-blur-md border border-neonPurple/50 text-neonPurple rounded-lg text-xs font-bold uppercase tracking-wider">HARİTA</span>
+                    </div>
+
+                    <img id="mainImage" src="" class="w-full h-full object-cover transition duration-500">
+                    
+                    <button onclick="changeSlide(-1)" class="nav-btn absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center text-white cursor-pointer z-20">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    
+                    <button onclick="changeSlide(1)" class="nav-btn absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center text-white cursor-pointer z-20">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+                </div>
+
+                <div class="flex gap-3 overflow-x-auto pb-2" id="thumbnailContainer">
+                    </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                    <div class="glass-panel p-4 rounded-xl text-center">
+                        <i data-lucide="clock" class="w-6 h-6 mx-auto text-neonBlue mb-2"></i>
+                        <div class="text-[10px] text-gray-500 uppercase font-bold">Teslimat</div>
+                        <div class="font-mono font-bold text-white">Anında</div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-xl text-center">
+                        <i data-lucide="layers" class="w-6 h-6 mx-auto text-neonPink mb-2"></i>
+                        <div class="text-[10px] text-gray-500 uppercase font-bold">Parça Sayısı</div>
+                        <div class="font-mono font-bold text-white">450+</div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-xl text-center border border-green-500/20 bg-green-500/5">
+                        <i data-lucide="wrench" class="w-6 h-6 mx-auto text-green-400 mb-2"></i>
+                        <div class="text-[10px] text-gray-400 uppercase font-bold">Teknik Destek</div>
+                        <div class="font-mono font-bold text-white">14 Gün</div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-xl text-center">
+                        <i data-lucide="maximize" class="w-6 h-6 mx-auto text-neonPurple mb-2"></i>
+                        <div class="text-[10px] text-gray-500 uppercase font-bold">Boyut</div>
+                        <div class="font-mono font-bold text-white">Medium</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 flex flex-col h-full" data-aos="fade-left">
+                
+                <div class="mb-auto">
+                    <h1 class="text-4xl md:text-5xl font-display font-bold mb-2 leading-tight">Orta Çağ Temalı Kale Lobisi</h1>
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="text-sm text-gray-400">Ürün stoklarımızda mevcuttur, hemen teslim edilir.</span>
+                    </div>
+
+                    <div class="space-y-4 mb-8">
+                        <p class="text-gray-300 leading-relaxed text-sm">
+                            Upsilon Dev Studio tarafından hazırlanan bu çalışma; geniş ölçekli taş mimarisi, doğal ışık kanalları ve yüksek optimizasyon kalitesiyle sunulmaktadır. Estetik duruşu ve performans dostu yapısıyla oyununuza prestij katar.
+                        </p>
+                        <ul class="text-gray-400 text-sm space-y-2">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-neonBlue"></i> Gelişmiş Işıklandırma (Future Lighting)</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-neonBlue"></i> Yüksek Optimizasyon (Low-Lag)</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-neonBlue"></i> %100 Özgün Tasarım</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl neon-box mb-8 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-neonPurple/20 blur-[40px]"></div>
+                        <div class="flex justify-between items-end mb-4 relative z-10">
+                            <div>
+                                <div class="text-xs text-gray-400 uppercase font-bold mb-1">Satış Fiyatı</div>
+                                <div class="text-4xl font-display font-bold text-white">200₺</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs text-gray-400 uppercase font-bold mb-1">Geliştirici</div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center text-[10px] font-bold">UP</div>
+                                    <span class="font-bold text-white text-sm">Upsilon Team</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-xs text-gray-500 border-t border-white/10 pt-4 relative z-10 flex gap-2 items-start">
+                            <i data-lucide="info" class="w-4 h-4 text-neonPink flex-shrink-0"></i>
+                            <span>Fiyatlandırma; hazır mesh kullanmak yerine her detayın F3X ile tek tek işlenmesinden doğan builder emeğini, düşük parça sayısı (part count) ile sağlanan yüksek optimizasyonu ve stüdyomuzun profesyonel işçilik garantisini kapsamaktadır.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sticky bottom-6 z-20">
+                    <button onclick="goToOrder('Orta Çağ Temalı Kale Lobisi', '200₺')" class="w-full group relative overflow-hidden rounded-xl bg-ups-gradient p-[1px] shadow-[0_0_40px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.02]">
+                        <div class="relative flex items-center justify-center gap-3 rounded-xl bg-black/10 backdrop-blur-sm px-8 py-4 transition-all group-hover:bg-transparent">
+                            <span class="font-display text-lg font-bold text-white uppercase tracking-wide">Güvenli Sipariş Oluştur</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 text-white transition-transform group-hover:translate-x-1"></i>
+                        </div>
+                    </button>
+                    
+                    <div class="flex justify-center items-center gap-4 mt-4 opacity-50">
+                        <div class="flex items-center gap-1"><i data-lucide="shield" class="w-3 h-3"></i> <span class="text-[10px] uppercase">Güvenli Ödeme</span></div>
+                        <div class="flex items-center gap-1"><i data-lucide="headphones" class="w-3 h-3"></i> <span class="text-[10px] uppercase">7/24 Destek</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+<footer class="border-t border-white/5 bg-black/50 pt-16 pb-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <img src="logo.png" class="w-8 h-8 object-contain">
+                    <span class="font-display font-bold text-xl tracking-wide text-white">UPSILON</span>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
+                    Roblox evreninde hayal ettiğin dünyaları gerçeğe dönüştürüyoruz. Profesyonel building, scripting ve tasarım hizmetleri için doğru adrestesin.
+                </p>
+                
+                <div class="flex flex-wrap gap-3">
+                    <a href="#" title="Instagram" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 hover:border-transparent transition-all"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    
+                    <a href="#" title="Discord" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5865F2] hover:border-transparent transition-all"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+                    
+                    <a href="#" title="YouTube" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#FF0000] hover:border-transparent transition-all"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                    
+                    <a href="#" title="TikTok" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-black hover:border-white/20 transition-all">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.03 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-1.13-.32-2.34-.14-3.41.37-.71.33-1.36.85-1.8 1.51-.46.64-.64 1.44-.6 2.23.03.82.32 1.59.81 2.22.61.78 1.53 1.31 2.51 1.41.92.1 1.86-.04 2.67-.53.76-.43 1.34-1.12 1.6-1.92.17-.55.22-1.13.21-1.71V.02z"/></svg>
+                    </a>
+                    
+                    <a href="#" title="X (Twitter)" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-black transition-all"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    
+                    <a href="mailto:upsiloneposta@gmail.com" title="E-Posta" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-neonPink hover:border-transparent transition-all"><i data-lucide="mail" class="w-5 h-5"></i></a>
+
+                    <a href="#" title="Roblox Profili" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-600 hover:border-transparent transition-all">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.826 23.357l-14.717-2.651-2.652-14.717 14.717 2.651 2.652 14.717zm-1.617-15.426l-8.092-1.458-1.458 8.092 8.092 1.458 1.458-8.092z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white mb-6">Hızlı Erişim</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="index.html" class="hover:text-neonPurple transition-colors">Ana Sayfa</a></li>
+                    <li><a href="portfolyo.html" class="hover:text-neonPurple transition-colors">Portfolyo</a></li>
+                    <li><a href="magaza.html" class="hover:text-neonPurple transition-colors">Hazır Ürünler</a></li>
+                    <li><a href="fiyatlar.html" class="hover:text-neonPurple transition-colors">Fiyatlandırma</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-white mb-6">Kurumsal</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="sss.html" class="hover:text-neonBlue transition-colors flex items-center gap-2"><i data-lucide="help-circle" class="w-3 h-3"></i> S.S.S (Merak Edilenler)</a></li>
+                    <li><a href="hakkimizda.html" class="hover:text-neonBlue transition-colors">Hakkımızda</a></li>
+                    <li><a href="iletisim.html" class="hover:text-neonBlue transition-colors">İletişim</a></li>
+                    <li><a href="sartlar.html" class="hover:text-neonBlue transition-colors">Hizmet Şartları</a></li>
+                    <li><a href="telif-haklari.html" class="hover:text-neonBlue transition-colors">Telif Hakları & İzinler</a></li>
+                    <li><a href="gizlilik-politikasi.html" class="hover:text-neonBlue transition-colors">Gizlilik Politikası</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-600 text-sm">© 2026 Upsilon Dev Studio. Tüm hakları saklıdır.</p>
+            <div class="flex items-center gap-2 opacity-50">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-xs text-gray-500 font-mono">SYSTEM: ONLINE</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+        AOS.init(); lucide.createIcons();
+
+        // ==========================================
+        // 📸 FOTOĞRAF LİSTESİ (BURASI ÖNEMLİ)
+        // ==========================================
+        const urunGorselleri = [
+            "maps.png" 
+            // Sadece 1 tane link koyarsan sistem otomatik algılar babuş
+        ];
+
+        let currentIndex = 0;
+        const mainImg = document.getElementById('mainImage');
+        const thumbContainer = document.getElementById('thumbnailContainer');
+        const navButtons = document.querySelectorAll('.nav-btn'); // Oklar
+
+        // Sayfa Yüklendiğinde Çalışan Ayar
+        function initGallery() {
+            // Ana resmi ayarla
+            mainImg.src = urunGorselleri[0];
+
+            // EĞER SADECE 1 RESİM VARSA
+            if (urunGorselleri.length <= 1) {
+                // 1. Okları Gizle
+                navButtons.forEach(btn => btn.style.display = 'none');
+                
+                // 2. Alttaki Küçük Resim Şeridini Gizle
+                thumbContainer.style.display = 'none';
+                
+            } else {
+                // BİRDEN FAZLA RESİM VARSA (Normal Çalışır)
+                
+                // Küçük resimleri oluştur
+                urunGorselleri.forEach((imgSrc, index) => {
+                    const thumb = document.createElement('img');
+                    thumb.src = imgSrc;
+                    thumb.className = `w-20 h-20 object-cover rounded-lg cursor-pointer thumb ${index === 0 ? 'active' : ''}`;
+                    thumb.onclick = () => setSlide(index);
+                    thumbContainer.appendChild(thumb);
+                });
+            }
+        }
+
+        // Resmi Değiştir (Oklarla)
+        function changeSlide(direction) {
+            // Tek resim varsa çalışma
+            if(urunGorselleri.length <= 1) return;
+
+            currentIndex += direction;
+            if (currentIndex >= urunGorselleri.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = urunGorselleri.length - 1;
+            updateGallery();
+        }
+
+        // Resmi Değiştir (Tıklayarak)
+        function setSlide(index) {
+            currentIndex = index;
+            updateGallery();
+        }
+
+        // Güncelleme Efekti
+        function updateGallery() {
+            mainImg.style.opacity = 0;
+            setTimeout(() => {
+                mainImg.src = urunGorselleri[currentIndex];
+                mainImg.style.opacity = 1;
+            }, 150);
+
+            const thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach((t, i) => {
+                if(i === currentIndex) t.classList.add('active');
+                else t.classList.remove('active');
+            });
+        }
+
+        // Klavye Kontrolü
+        document.addEventListener('keydown', (e) => {
+            if(urunGorselleri.length > 1) {
+                if (e.key === 'ArrowRight') changeSlide(1);
+                if (e.key === 'ArrowLeft') changeSlide(-1);
+            }
+        });
+
+        // Sipariş Yönlendirme
+        function goToOrder(productName, productPrice) {
+            const cleanName = encodeURIComponent(productName);
+            const cleanPrice = encodeURIComponent(productPrice);
+            window.location.href = `iletisim.html?product=${cleanName}&price=${cleanPrice}`;
+        }
+
+        // Başlat
+        initGallery();
+    </script>
+</body>
+</html>
